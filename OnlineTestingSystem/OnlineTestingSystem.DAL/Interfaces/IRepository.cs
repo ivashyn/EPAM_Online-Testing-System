@@ -14,6 +14,5 @@ namespace OnlineTestingSystem.DAL.Interfaces
         void Create(T item);
         void Delete(int id);
         void Update(T item);
-
     }
 }

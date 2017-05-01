@@ -9,7 +9,7 @@ namespace OnlineTestingSystem.DAL.Entities
 {
     public class UserRole
     {
-        public int UserRoleID { get; set; }
+        public byte UserRoleID { get; set; }
 
         [Required]
         [StringLength(20)]

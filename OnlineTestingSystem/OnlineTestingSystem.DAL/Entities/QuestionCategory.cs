@@ -16,15 +16,13 @@ namespace OnlineTestingSystem.DAL.Entities
         public string CategoryName { get; set; }
 
 
-        public int TestId { get; set; }
-        public virtual Test Test { get; set; }  //maybe 1:1?
         public virtual ICollection<Question> Questions { get; set; }
-        
+        public virtual ICollection<Test> Tests { get; set; }  //maybe 1:1?
 
         public QuestionCategory()
         {
             Questions = new List<Question>();
-            //Tests = new List<Test>();
+            Tests = new List<Test>();
         }
     }
 }

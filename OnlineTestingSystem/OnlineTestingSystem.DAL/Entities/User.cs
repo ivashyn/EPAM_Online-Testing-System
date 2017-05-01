@@ -32,7 +32,7 @@ namespace OnlineTestingSystem.DAL.Entities
         public string Email { get; set; }
 
 
-        public byte UserRoleID { get; set; }
+        public byte UserRoleId { get; set; }
         public virtual UserRole UserRole { get; set; }
 
         public virtual ICollection<Sertificate> Sertificates { get; set; }

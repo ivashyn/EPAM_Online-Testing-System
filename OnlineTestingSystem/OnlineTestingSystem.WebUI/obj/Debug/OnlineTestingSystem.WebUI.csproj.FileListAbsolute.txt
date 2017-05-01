@@ -65,3 +65,10 @@ D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\Microsof
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\obj\Debug\OnlineTestingSystem.WebUI.csprojResolveAssemblyReference.cache
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\obj\Debug\OnlineTestingSystem.WebUI.dll
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\obj\Debug\OnlineTestingSystem.WebUI.pdb
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\OnlineTestingSystem.DAL.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\EntityFramework.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\OnlineTestingSystem.DAL.pdb
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\OnlineTestingSystem.DAL.dll.config
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\EntityFramework.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\EntityFramework.SqlServer.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\EntityFramework.SqlServer.xml
