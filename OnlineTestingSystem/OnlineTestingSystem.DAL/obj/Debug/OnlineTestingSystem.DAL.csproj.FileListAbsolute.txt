@@ -8,5 +8,3 @@ D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.DAL\bin\Debug\Enti
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.DAL\obj\Debug\OnlineTestingSystem.DAL.dll
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.DAL\obj\Debug\OnlineTestingSystem.DAL.pdb
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.DAL\obj\Debug\OnlineTestingSystem.DAL.csprojResolveAssemblyReference.cache
-D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.DAL\obj\Debug\OnlineTestingSystem.DAL.Migrations.Migrations.resources
-D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.DAL\obj\Debug\OnlineTestingSystem.DAL.csproj.GenerateResource.Cache

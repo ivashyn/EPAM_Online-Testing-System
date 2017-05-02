@@ -18,7 +18,6 @@ namespace OnlineTestingSystem.DAL.Entities
         [StringLength(300)]
         public string Answer { get; set; }
 
-
         public int QuestionId { get; set; }
         public virtual Question Question { get; set; }
     }

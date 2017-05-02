@@ -1,0 +1,65 @@
+﻿using OnlineTestingSystem.BLL.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OnlineTestingSystem.BLL.ModelsDTO;
+using OnlineTestingSystem.DAL.Interfaces;
+using AutoMapper;
+using OnlineTestingSystem.DAL.Entities;
+using OnlineTestingSystem.BLL.Infrastructure;
+
+namespace OnlineTestingSystem.BLL.Services
+{
+    public class TestSessionService : ITestSessionService
+    {
+        IUnitOfWorkTest db;
+        IMapper _mapper;
+        public TestSessionService(IUnitOfWorkTest uow)
+        {
+            db = uow;
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TestSession, TestSessionDTO>()
+                .ForMember(bgv => bgv.UserDTO, opt => opt.MapFrom(b => b.User))
+                .ForMember(bgv => bgv.TestDTO, opt => opt.MapFrom(b => b.Test));
+                cfg.CreateMap<TestSessionDTO, TestSession>();
+                cfg.CreateMap<User, UserDTO>();
+                cfg.CreateMap<UserDTO, User>();
+                cfg.CreateMap<Test, TestDTO>();
+                cfg.CreateMap<TestDTO, Test>();
+            });
+            _mapper = config.CreateMapper();
+        }
+
+        public void CreateSession(TestSessionDTO session)
+        {
+            var sessionToAdd = _mapper.Map<TestSessionDTO, TestSession>(session);
+            db.TestSessions.Create(sessionToAdd);
+            db.Save();
+        }
+
+        public void DeleteSession(int id)
+        {
+            var sessionToDelete = GetSessionById(id);
+            if (sessionToDelete == null)
+                throw new ValidationException("Sorry, but the session doesn't exsist.", "");
+            db.TestSessions.Delete(id);
+            db.Save();
+        }
+
+        public IEnumerable<TestSessionDTO> GetAllSessions()
+        {
+            var session = db.TestSessions.GetAll();
+            return _mapper.Map<IEnumerable<TestSession>, IEnumerable<TestSessionDTO>>(session);
+
+        }
+
+        public TestSessionDTO GetSessionById(int id)
+        {
+            var session = db.TestSessions.Get(id);
+            return _mapper.Map<TestSession, TestSessionDTO>(session);
+        }
+    }
+}

@@ -72,3 +72,15 @@ D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\OnlineTe
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\EntityFramework.xml
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\EntityFramework.SqlServer.dll
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\EntityFramework.SqlServer.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\OnlineTestingSystem.BLL.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\AutoMapper.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\OnlineTestingSystem.BLL.pdb
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\OnlineTestingSystem.BLL.dll.config
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\AutoMapper.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\Ninject.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\Ninject.Web.Common.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\Ninject.Web.Mvc.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\WebActivatorEx.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\Ninject.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\Ninject.Web.Common.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.WebUI\bin\Ninject.Web.Mvc.xml

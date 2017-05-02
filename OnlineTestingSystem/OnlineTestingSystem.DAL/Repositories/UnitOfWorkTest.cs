@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.DAL.Repositories
 {
-    class UnitOfWorkTest : IUnitOfWorkTest
+    public class UnitOfWorkTest : IUnitOfWorkTest
     {
         TestContext db = new TestContext();
         private QuestionCategoriesRepository questionCategoryRepository;

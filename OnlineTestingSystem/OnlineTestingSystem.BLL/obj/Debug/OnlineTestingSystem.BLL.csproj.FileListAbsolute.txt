@@ -1,0 +1,17 @@
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\OnlineTestingSystem.BLL.dll.config
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\OnlineTestingSystem.BLL.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\OnlineTestingSystem.BLL.pdb
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\EntityFramework.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\OnlineTestingSystem.DAL.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\OnlineTestingSystem.DAL.pdb
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\OnlineTestingSystem.DAL.dll.config
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\EntityFramework.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\obj\Debug\OnlineTestingSystem.BLL.csprojResolveAssemblyReference.cache
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\obj\Debug\OnlineTestingSystem.BLL.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\obj\Debug\OnlineTestingSystem.BLL.pdb
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\AutoMapper.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\Ninject.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\AutoMapper.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\Ninject.xml

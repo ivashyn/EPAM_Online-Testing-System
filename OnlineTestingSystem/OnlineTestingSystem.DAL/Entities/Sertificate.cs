@@ -28,7 +28,5 @@ namespace OnlineTestingSystem.DAL.Entities
         public virtual User User { get; set; }
         public int TestId { get; set; }
         public virtual Test Test { get; set; }
-        
-
     }
 }

@@ -23,7 +23,6 @@ namespace OnlineTestingSystem.DAL.Entities
         public byte Timelimit { get; set; }
 
 
-        //public virtual User User { get; set; }
         public int QuestionCategoryId { get; set; }
         public virtual QuestionCategory QuestionCagegory { get; set; }
         public virtual ICollection<TestSession> TestSessions { get; set; }
