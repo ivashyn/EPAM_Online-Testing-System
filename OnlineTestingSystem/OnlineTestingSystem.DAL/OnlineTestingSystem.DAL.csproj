@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Certificate.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\QuestionAnswer.cs" />
     <Compile Include="Entities\QuestionCategory.cs" />
@@ -56,15 +57,19 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWorkTest.cs" />
     <Compile Include="Interfaces\IUnitOfWorkUser.cs" />
+    <Compile Include="Migrations\201705031115328_Migrations.cs" />
+    <Compile Include="Migrations\201705031115328_Migrations.Designer.cs">
+      <DependentUpon>201705031115328_Migrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\Sertificate.cs" />
     <Compile Include="Entities\Speciality.cs" />
     <Compile Include="Entities\Test.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Repositories\CertificateRepository.cs" />
     <Compile Include="Repositories\QuestionAnswerRepository.cs" />
     <Compile Include="Repositories\QuestionCategoriesRepository.cs" />
     <Compile Include="Repositories\QuestionRepository.cs" />
-    <Compile Include="Repositories\SertificateRepository.cs" />
     <Compile Include="Repositories\TestRepository.cs" />
     <Compile Include="Repositories\TestSessionRepository.cs" />
     <Compile Include="Repositories\UnitOfWorkTest.cs" />
@@ -75,6 +80,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705031115328_Migrations.resx">
+      <DependentUpon>201705031115328_Migrations.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

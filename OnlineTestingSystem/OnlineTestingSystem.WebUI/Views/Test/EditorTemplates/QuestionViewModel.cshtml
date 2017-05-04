@@ -1,0 +1,11 @@
+﻿@model OnlineTestingSystem.WebUI.Models.QuestionViewModel
+<div style="border:1px solid black">
+    @Html.HiddenFor(x => x.Id)
+    <h3> @Model.QuestionText </h3>
+    @foreach (var a in Model.Answers)
+    {
+        <p>
+            @Html.RadioButtonFor(b => b.SelectedAnswer, a.Id)  @a.Answer
+        </p>
+    }
+</div>

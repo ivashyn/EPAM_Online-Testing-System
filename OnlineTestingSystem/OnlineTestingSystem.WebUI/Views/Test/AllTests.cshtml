@@ -1,0 +1,14 @@
+﻿@model IEnumerable<OnlineTestingSystem.BLL.ModelsDTO.TestDTO>
+
+@{
+    ViewBag.Title = "AllTests";
+}
+
+<h2>AllTests</h2>
+
+@foreach (var test in Model)
+{
+    <p>@test.Id</p>
+    <p>@test.Name</p>
+    
+}

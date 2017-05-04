@@ -1,0 +1,21 @@
+﻿@model OnlineTestingSystem.BLL.ModelsDTO.TestDTO
+@{
+    ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+
+<p>@Model.Name</p>
+
+<p>@Model.ScoreToPass</p>
+
+<p>@Model.Timelimit</p>
+
+<p>@Model.QuestionCagegoryDTO.CategoryName</p>
+
+<div>
+    @foreach (var item in Model.QuestionCagegoryDTO.QuestionsDTO)
+    {
+        @item.QuestionText
+    }
+</div>

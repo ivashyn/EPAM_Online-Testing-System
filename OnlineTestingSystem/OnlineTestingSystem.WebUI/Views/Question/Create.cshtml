@@ -1,0 +1,21 @@
+﻿@model OnlineTestingSystem.BLL.ModelsDTO.QuestionDTO
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+
+@using (Html.BeginForm("Create", "Question", FormMethod.Post, new { @class = "createQuestion" }))
+{
+    <div id="errorText">
+        @Html.ValidationSummary(true)
+    </div>
+    @Html.TextBoxFor(x => x.Score, new { @class = "form-control", placeholder = "Score" })
+    @Html.TextAreaFor(x => x.QuestionText, new { @class = "form-control", placeholder = "QuestionText" })
+
+    
+
+    <input type="submit" value="Create" />
+}

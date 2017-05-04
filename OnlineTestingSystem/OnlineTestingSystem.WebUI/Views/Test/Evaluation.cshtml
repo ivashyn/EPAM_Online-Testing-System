@@ -1,0 +1,24 @@
+﻿@model OnlineTestingSystem.WebUI.Models.EvaluationViewModel
+<h2>Quiz 24</h2>
+
+@ViewBag.TimeLimit
+
+@{
+    int i = 1;
+    foreach (var item in Model.Questions)
+    {
+        <div id="">
+            <button>
+                @Html.Raw(i++)
+            </button>
+        </div>
+    }
+}
+
+
+@using (Html.BeginForm("Evaluation", "Test", FormMethod.Post))
+{
+    @Html.HiddenFor(x=>x.TestId)
+    @Html.EditorFor(x => x.Questions)
+    <input type="submit" value="EndTest" />
+}

@@ -55,17 +55,17 @@
   <ItemGroup>
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
+    <Compile Include="Interfaces\ICertificateService.cs" />
     <Compile Include="Interfaces\IQuestionAnswerService.cs" />
     <Compile Include="Interfaces\IQuestionCategoryService.cs" />
     <Compile Include="Interfaces\IQuestionService.cs" />
-    <Compile Include="Interfaces\ISertificateService.cs" />
     <Compile Include="Interfaces\ITestSessionService.cs" />
     <Compile Include="Interfaces\ITestService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="ModelsDTO\CertificateDTO.cs" />
     <Compile Include="ModelsDTO\QuestionAnswerDTO.cs" />
     <Compile Include="ModelsDTO\QuestionCategoryDTO.cs" />
     <Compile Include="ModelsDTO\QuestionDTO.cs" />
-    <Compile Include="ModelsDTO\SertificateDTO.cs" />
     <Compile Include="ModelsDTO\TestDTO.cs" />
     <Compile Include="ModelsDTO\TestSessionDTO.cs" />
     <Compile Include="ModelsDTO\UserDTO.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="Services\QuestionAnswerService.cs" />
     <Compile Include="Services\QuestionCategoryService.cs" />
     <Compile Include="Services\QuestionService.cs" />
-    <Compile Include="Services\SertificateService.cs" />
+    <Compile Include="Services\CertificateService.cs" />
     <Compile Include="Services\TestSessionService.cs" />
     <Compile Include="Services\TestService.cs" />
     <Compile Include="Services\UserService.cs" />

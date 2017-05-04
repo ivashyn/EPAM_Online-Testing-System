@@ -14,7 +14,7 @@ namespace OnlineTestingSystem.DAL.EntityFramework
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<TestSession> TestSessions { get; set; }
-        public DbSet<Sertificate> Sertificates { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
         public DbSet<QuestionCategory> QuestionCategories { get; set; }

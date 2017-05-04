@@ -14,13 +14,13 @@ namespace OnlineTestingSystem.WebUI.Controllers
         IQuestionCategoryService _questionCategoryService;
         IQuestionService _questionService;
         IUserService _userService;
-        ISertificateService _sertificateService;
+        ICertificateService _sertificateService;
         ITestService _testService;
         ITestSessionService _testSessionService;
         IQuestionAnswerService _questionAnswerService;
 
         public HomeController(IQuestionCategoryService qcservice, IQuestionService qService, IUserService uService,
-                                ISertificateService sService, ITestService tService, ITestSessionService tsService, IQuestionAnswerService qaService)
+                                ICertificateService sService, ITestService tService, ITestSessionService tsService, IQuestionAnswerService qaService)
         {
             _questionCategoryService = qcservice;
             _questionService = qService;
@@ -34,20 +34,15 @@ namespace OnlineTestingSystem.WebUI.Controllers
 
         public ActionResult Index()
         {
-            var question = _questionService.GetQuestionById(3);
-            var questionAnswer = _questionAnswerService.GetAnswerById(2);
-            var category = _questionCategoryService.GetCagetoryById(1);
-            var test = _testService.GetTestById(2);
-            var testSession = _testSessionService.GetSessionById(2);
-            var sertificate = _sertificateService.GetSertificateById(4);
-            var user = _userService.GetUserById(2);
+            //var question = _questionService.GetQuestionById(3);
+            //var questionAnswer = _questionAnswerService.GetAnswerById(2);
+            //var category = _questionCategoryService.GetCagetoryById(1);
+            //var test = _testService.GetTestById(2);
+            //var testSession = _testSessionService.GetSessionById(2);
+            //var sertificate = _sertificateService.GetSertificateById(4);
+            //var user = _userService.GetUserById(2);
 
-            var createCategory = new QuestionCategoryDTO
-            {
-                CategoryName = "delete"
-            };
-            _questionCategoryService.CreateCategory(createCategory);
-            var s = _questionCategoryService.GetAllCategories().ToList();
+            //var s = _questionCategoryService.GetAllCategories().ToList();
             return View();
             
         }

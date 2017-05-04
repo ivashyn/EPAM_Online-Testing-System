@@ -1,0 +1,20 @@
+﻿@model IEnumerable<OnlineTestingSystem.BLL.ModelsDTO.UserDTO>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users</h2>
+
+@foreach (var user in Model)
+{
+    <div>
+        <p>
+            @user.LastName
+            @user.FirstName
+            @user.Login
+            @user.Email
+            @user.UserRole
+        </p>
+    </div>
+}
+

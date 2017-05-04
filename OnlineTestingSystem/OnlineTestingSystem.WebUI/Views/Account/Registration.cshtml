@@ -1,0 +1,23 @@
+﻿@model OnlineTestingSystem.BLL.ModelsDTO.UserDTO
+@{
+    ViewBag.Title = "Registration";
+}
+
+<h2>Registration</h2>
+
+@using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "registerForm" }))
+{
+    <div id="errorText">
+        @Html.ValidationSummary(true)
+    </div>
+    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Email" })
+    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", placeholder = "Firstname" })
+    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", placeholder = "Lastname" })
+    @Html.TextBoxFor(x => x.Login, new { @class = "form-control", placeholder = "Login" })
+    @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "Password" })
+    @*
+        <input type="checkbox" name="RemebmerMe" />*@
+    <span id="RememberMe">Remember me</span>
+
+    <input type="submit" value="Register" />
+}
