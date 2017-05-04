@@ -59,5 +59,11 @@ namespace OnlineTestingSystem.BLL.Services
             var answer = db.QuestionAnswers.Get(id);
             return _mapper.Map<QuestionAnswer, QuestionAnswerDTO>(answer);
         }
+
+        public IEnumerable<QuestionAnswerDTO> GetAnswersByQuestionId(int questionId)
+        {
+            var answers = db.QuestionAnswers.Find(q => q.QuestionId == questionId);
+            return _mapper.Map<IEnumerable<QuestionAnswer>, IEnumerable<QuestionAnswerDTO>>(answers);
+        }
     }
 }

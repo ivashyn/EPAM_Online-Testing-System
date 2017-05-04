@@ -25,13 +25,13 @@ namespace OnlineTestingSystem.BLL.Services
             {
                 cfg.CreateMap<User, UserDTO>()
                 .ForMember(udto => udto.UserRole, opt => opt.MapFrom(u => (UserRoleDTO)u.UserRoleId))
-                .ForMember(udto => udto.SertificatesDTO, opt => opt.MapFrom(u => u.Sertificates))
+                .ForMember(udto => udto.SertificatesDTO, opt => opt.MapFrom(u => u.Certificates))
                 .ForMember(udto => udto.TestSessionsDTO, opt => opt.MapFrom(u => u.TestSessions));
                 cfg.CreateMap<UserDTO, User>()
                 .ForMember(u => u.UserRoleId,
                         opt => opt.MapFrom(udto => (byte)((UserRoleDTO)Enum.Parse(typeof(UserRoleDTO), udto.UserRole.ToString()))));
-                cfg.CreateMap<Sertificate, SertificateDTO>();
-                cfg.CreateMap<SertificateDTO, Sertificate>();
+                cfg.CreateMap<Certificate, CertificateDTO>();
+                cfg.CreateMap<CertificateDTO, Certificate>();
                 cfg.CreateMap<TestSession, TestSessionDTO>();
                 cfg.CreateMap<TestSessionDTO, TestSession>();
             });
@@ -76,7 +76,7 @@ namespace OnlineTestingSystem.BLL.Services
             return _mapper.Map<User, UserDTO>(user);
         }
 
-        public IEnumerable<SertificateDTO> GetUsersSertificate(int userId) //...
+        public IEnumerable<CertificateDTO> GetUsersCertificates(int userId) //...
         {
             var user = GetUserById(userId);
             if (user == null)

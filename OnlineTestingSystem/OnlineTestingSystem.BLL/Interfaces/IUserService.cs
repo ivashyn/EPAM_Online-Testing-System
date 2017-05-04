@@ -12,7 +12,7 @@ namespace OnlineTestingSystem.BLL.Interfaces
         IEnumerable<UserDTO> GetAllUsers();
         UserDTO GetUserByEmail(string email);
         UserDTO GetUserById(int id);
-        IEnumerable<SertificateDTO> GetUsersSertificate(int userId);
+        IEnumerable<CertificateDTO> GetUsersCertificates(int userId);
         void CreateUser(UserDTO user);
         void DeleteUser(int id);
     }

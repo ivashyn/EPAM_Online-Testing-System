@@ -61,5 +61,6 @@ namespace OnlineTestingSystem.BLL.Services
             var category = db.QuestionCategories.Get(id);
             return _mapper.Map<QuestionCategory, QuestionCategoryDTO>(category);
         }
+
     }
 }

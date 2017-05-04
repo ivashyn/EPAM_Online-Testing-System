@@ -10,6 +10,7 @@ namespace OnlineTestingSystem.BLL.Interfaces
     public interface IQuestionAnswerService
     {
         IEnumerable<QuestionAnswerDTO> GetAllAnswers();
+        IEnumerable<QuestionAnswerDTO> GetAnswersByQuestionId(int questionId);
         QuestionAnswerDTO GetAnswerById(int id);
         void CreateAnswer(QuestionAnswerDTO answer);
         void DeleteAnswer(int id);
