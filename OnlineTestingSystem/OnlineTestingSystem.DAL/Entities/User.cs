@@ -35,12 +35,12 @@ namespace OnlineTestingSystem.DAL.Entities
         public byte UserRoleId { get; set; }
        // public virtual UserRole UserRole { get; set; }
 
-        public virtual ICollection<Sertificate> Sertificates { get; set; }
+        public virtual ICollection<Certificate> Certificates { get; set; }
         public virtual ICollection<TestSession> TestSessions { get; set; }
 
         public User()
         {
-            Sertificates = new List<Sertificate>();
+            Certificates = new List<Certificate>();
             TestSessions = new List<TestSession>();
         }
         

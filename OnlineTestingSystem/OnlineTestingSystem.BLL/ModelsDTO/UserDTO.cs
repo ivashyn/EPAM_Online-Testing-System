@@ -15,12 +15,12 @@ namespace OnlineTestingSystem.BLL.ModelsDTO
         public string Password { get; set; }
         public string Email { get; set; }
         public UserRoleDTO UserRole { get; set; }
-        public virtual ICollection<SertificateDTO> SertificatesDTO { get; set; }
+        public virtual ICollection<CertificateDTO> SertificatesDTO { get; set; }
         public virtual ICollection<TestSessionDTO> TestSessionsDTO { get; set; }
 
         public UserDTO()
         {
-            SertificatesDTO = new List<SertificateDTO>();
+            SertificatesDTO = new List<CertificateDTO>();
             TestSessionsDTO = new List<TestSessionDTO>();
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.BLL.ModelsDTO
 {
-    public class SertificateDTO
+    public class CertificateDTO
     {
         public int Id { get; set; }
         public string SertificateNumber { get; set; }

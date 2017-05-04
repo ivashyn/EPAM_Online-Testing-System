@@ -12,7 +12,7 @@ namespace OnlineTestingSystem.DAL.Interfaces
         IRepository<Test> Tests { get; }
         IRepository<TestSession> TestSessions { get; }
         //epository<Speciality> Specialities { get; }
-        IRepository<Sertificate> Sertificates { get; }
+        IRepository<Certificate> Certificates { get; }
         IRepository<Question> Questions { get;  }
         IRepository<QuestionAnswer> QuestionAnswers { get; }
         IRepository<QuestionCategory> QuestionCategories { get; }

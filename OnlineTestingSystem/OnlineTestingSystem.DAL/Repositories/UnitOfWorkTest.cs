@@ -17,7 +17,7 @@ namespace OnlineTestingSystem.DAL.Repositories
         private QuestionAnswerRepository questionAnswerRepository;
         private TestRepository testRepository;
         private TestSessionRepository testSessionRepository;
-        private SertificateRepository sertificateRepository;
+        private CertificateRepository certificateRepository;
 
         public IRepository<Test> Tests
         {
@@ -39,13 +39,13 @@ namespace OnlineTestingSystem.DAL.Repositories
             }
         }
 
-        public IRepository<Sertificate> Sertificates
+        public IRepository<Certificate> Certificates
         {
             get
             {
-                if (sertificateRepository == null)
-                    sertificateRepository = new SertificateRepository(db);
-                return sertificateRepository;
+                if (certificateRepository == null)
+                    certificateRepository = new CertificateRepository(db);
+                return certificateRepository;
             }
         }
 

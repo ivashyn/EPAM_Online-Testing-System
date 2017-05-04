@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.DAL.Entities
 {
-    public class Sertificate
+    public class Certificate
     {
         public int Id { get; set; }
 
         [Required]
         [StringLength(10)]
-        public string SertificateNumber { get; set; }
+        public string CertificateNumber { get; set; }
 
         [Required]
         public int Score { get; set; }
