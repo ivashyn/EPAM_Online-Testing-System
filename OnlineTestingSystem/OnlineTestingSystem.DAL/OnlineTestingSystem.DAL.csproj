@@ -57,9 +57,9 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWorkTest.cs" />
     <Compile Include="Interfaces\IUnitOfWorkUser.cs" />
-    <Compile Include="Migrations\201705031115328_Migrations.cs" />
-    <Compile Include="Migrations\201705031115328_Migrations.Designer.cs">
-      <DependentUpon>201705031115328_Migrations.cs</DependentUpon>
+    <Compile Include="Migrations\201705051244380_Migrations.cs" />
+    <Compile Include="Migrations\201705051244380_Migrations.Designer.cs">
+      <DependentUpon>201705051244380_Migrations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,8 +82,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705031115328_Migrations.resx">
-      <DependentUpon>201705031115328_Migrations.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705051244380_Migrations.resx">
+      <DependentUpon>201705051244380_Migrations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

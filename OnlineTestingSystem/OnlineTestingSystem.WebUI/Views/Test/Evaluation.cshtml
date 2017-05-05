@@ -15,10 +15,14 @@
     }
 }
 
+@{
+    Model.TimeStart = @DateTime.Now;
+}
 
 @using (Html.BeginForm("Evaluation", "Test", FormMethod.Post))
 {
-    @Html.HiddenFor(x=>x.TestId)
+    @Html.HiddenFor(x => x.TimeStart)
+    @Html.HiddenFor(x => x.TestId)
     @Html.EditorFor(x => x.Questions)
     <input type="submit" value="EndTest" />
 }

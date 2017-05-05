@@ -18,11 +18,11 @@ namespace OnlineTestingSystem.DAL.Entities
         public int Score { get; set; }
 
         [Required]
-        [Column(TypeName = "smalldatetime")]
+        //[Column(TypeName = "smalldatetime")]
         public DateTime TimeStart { get; set; }
 
         [Required]
-        [Column(TypeName = "smalldatetime")]
+        //[Column(TypeName = "smalldatetime")]
         public DateTime TimeFinish { get; set; }
 
         

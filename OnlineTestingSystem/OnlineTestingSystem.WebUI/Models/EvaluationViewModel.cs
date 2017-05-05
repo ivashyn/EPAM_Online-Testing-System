@@ -6,12 +6,12 @@ using System.Web;
 
 namespace OnlineTestingSystem.WebUI.Models
 {
-    
-    
     public class EvaluationViewModel
     {
         public int TestId { get; set; }
         public List<QuestionViewModel> Questions { set; get; }
+        public DateTime TimeStart { get; set; }
+        public DateTime TimeFinish { get; set; }
         public EvaluationViewModel(int testId)
         {
             TestId = testId;

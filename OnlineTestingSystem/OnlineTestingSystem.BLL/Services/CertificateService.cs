@@ -39,9 +39,9 @@ namespace OnlineTestingSystem.BLL.Services
         public void CreateCertificate(CertificateDTO sertificate)
         {
             var sertificateToAdd = _mapper.Map<CertificateDTO, Certificate>(sertificate);
-            var testFromDb = db.Certificates.Find(u => u.CertificateNumber == sertificate.SertificateNumber).FirstOrDefault();
+            var testFromDb = db.Certificates.Find(u => u.CertificateNumber == sertificate.CertificateNumber).FirstOrDefault();
             if (testFromDb != null)
-                throw new ValidationException("Sorry, but the user with the same Email is already exsist", "");
+                throw new ValidationException("Sorry, but the user with the same certificate Number is already exsist", "");
             db.Certificates.Create(sertificateToAdd);
             db.Save();
         }

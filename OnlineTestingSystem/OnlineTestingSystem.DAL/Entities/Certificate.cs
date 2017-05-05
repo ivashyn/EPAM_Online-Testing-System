@@ -20,7 +20,7 @@ namespace OnlineTestingSystem.DAL.Entities
         public int Score { get; set; }
 
         [Required]
-        [Column(TypeName = "smalldatetime")]
+        [Column(TypeName = "date")]
         public DateTime TestDate { get; set; }
 
 

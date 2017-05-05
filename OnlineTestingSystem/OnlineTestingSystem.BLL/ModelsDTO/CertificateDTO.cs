@@ -9,7 +9,7 @@ namespace OnlineTestingSystem.BLL.ModelsDTO
     public class CertificateDTO
     {
         public int Id { get; set; }
-        public string SertificateNumber { get; set; }
+        public string CertificateNumber { get; set; }
         public int Score { get; set; }  
         public DateTime TestDate { get; set; }
 
