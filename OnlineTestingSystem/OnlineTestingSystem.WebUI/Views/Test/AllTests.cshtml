@@ -5,10 +5,21 @@
 }
 
 <h2>AllTests</h2>
+<br />
 
-@foreach (var test in Model)
-{
-    <p>@test.Id</p>
-    <p>@test.Name</p>
-    
-}
+<div style="display:block; height:500px;">
+    @foreach (var test in Model)
+    {
+
+        <div class="col-md-4" style="display:block;">
+            <a href="@Url.Action("Test", "Test", new { @id = test.Id })">
+
+                <div style="border:1px solid black; padding:15px; margin:10px,15px; height:100px;">
+                    @Html.ActionLink(test.Name, "Test", "Test", new { id = test.Id }, new { @class = "" })
+                    
+                </div>
+            </a>
+        </div>
+
+    }
+</div>

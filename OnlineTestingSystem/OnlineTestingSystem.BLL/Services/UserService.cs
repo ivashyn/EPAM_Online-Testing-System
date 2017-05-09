@@ -24,12 +24,12 @@ namespace OnlineTestingSystem.BLL.Services
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<User, UserDTO>()
-                .ForMember(udto => udto.UserRole, opt => opt.MapFrom(u => (UserRoleDTO)u.UserRoleId))
-                .ForMember(udto => udto.SertificatesDTO, opt => opt.MapFrom(u => u.Certificates))
-                .ForMember(udto => udto.TestSessionsDTO, opt => opt.MapFrom(u => u.TestSessions));
+                .ForMember(udto => udto.UserRole, dal => dal.MapFrom(u => (UserRoleDTO)u.UserRoleId))
+                .ForMember(udto => udto.SertificatesDTO, dal => dal.MapFrom(u => u.Certificates))
+                .ForMember(udto => udto.TestSessionsDTO, dal => dal.MapFrom(u => u.TestSessions));
                 cfg.CreateMap<UserDTO, User>()
                 .ForMember(u => u.UserRoleId,
-                        opt => opt.MapFrom(udto => (byte)((UserRoleDTO)Enum.Parse(typeof(UserRoleDTO), udto.UserRole.ToString()))));
+                        dal => dal.MapFrom(udto => (byte)((UserRoleDTO)Enum.Parse(typeof(UserRoleDTO), udto.UserRole.ToString()))));
                 cfg.CreateMap<Certificate, CertificateDTO>();
                 cfg.CreateMap<CertificateDTO, Certificate>();
                 cfg.CreateMap<TestSession, TestSessionDTO>();
@@ -83,6 +83,13 @@ namespace OnlineTestingSystem.BLL.Services
                 throw new ValidationException("Sorry, but the user doesn't exsist","");
             var sertificates = user.SertificatesDTO;
             return sertificates;
+        }
+
+        public void UpdateUser(UserDTO user)
+        {
+            var userDAL = _mapper.Map<UserDTO, User>(user);
+            db.Users.Update(userDAL);
+            db.Save();
         }
 
         private string CalculateMd5Hash(string input)

@@ -11,7 +11,9 @@ namespace OnlineTestingSystem.BLL.Interfaces
     {
         IEnumerable<QuestionDTO> GetAllQuestions();
         QuestionDTO GetQuestionById(int id);
+        QuestionDTO GetQuestionByText(string questionText);
         void CreateQuestion(QuestionDTO question);
         void DeleteQuestion(int id);
+        void UpdateQuestion(QuestionDTO question);
     }
 }

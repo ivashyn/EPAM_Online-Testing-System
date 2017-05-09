@@ -22,8 +22,8 @@ namespace OnlineTestingSystem.BLL.Services
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<QuestionCategory, QuestionCategoryDTO>()
-                .ForMember(bgv => bgv.QuestionsDTO, opt => opt.MapFrom(b => b.Questions))
-                .ForMember(bgv => bgv.TestsDTO, opt => opt.MapFrom(b => b.Tests));
+                .ForMember(bll => bll.QuestionsDTO, dal => dal.MapFrom(b => b.Questions))
+                .ForMember(bll => bll.TestsDTO, dal => dal.MapFrom(b => b.Tests));
                 cfg.CreateMap<QuestionCategoryDTO, QuestionCategory>();
                 cfg.CreateMap<Question, QuestionDTO>();
                 cfg.CreateMap<QuestionDTO, Question>();
@@ -62,5 +62,11 @@ namespace OnlineTestingSystem.BLL.Services
             return _mapper.Map<QuestionCategory, QuestionCategoryDTO>(category);
         }
 
+        public void UpdateCategory(QuestionCategoryDTO category)
+        {
+            var questionCategory = _mapper.Map<QuestionCategoryDTO, QuestionCategory>(category);
+            db.QuestionCategories.Update(questionCategory);
+            db.Save();
+        }
     }
 }

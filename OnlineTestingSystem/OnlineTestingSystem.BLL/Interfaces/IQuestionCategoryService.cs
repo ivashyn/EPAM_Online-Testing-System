@@ -13,6 +13,7 @@ namespace OnlineTestingSystem.BLL.Interfaces
         QuestionCategoryDTO GetCagetoryById(int id);
         void CreateCategory(QuestionCategoryDTO category);
         void DeleteCategory(int id);
+        void UpdateCategory(QuestionCategoryDTO category);
 
 
     }

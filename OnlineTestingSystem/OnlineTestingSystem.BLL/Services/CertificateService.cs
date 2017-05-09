@@ -27,10 +27,10 @@ namespace OnlineTestingSystem.BLL.Services
                 cfg.CreateMap<UserDTO, User>();
 
                 cfg.CreateMap<Certificate, CertificateDTO>()
-                .ForMember(bgv => bgv.UserDTO, opt => opt.MapFrom(b => b.User))
-                .ForMember(bgv => bgv.TestDTO, opt => opt.MapFrom(b => b.Test));
+                .ForMember(bll => bll.UserDTO, dal => dal.MapFrom(b => b.User))
+                .ForMember(bll => bll.TestDTO, dal => dal.MapFrom(b => b.Test));
                 cfg.CreateMap<CertificateDTO, Certificate>()
-                .ForMember(bgv => bgv.User, opt => opt.MapFrom(b => b.UserDTO)); ;
+                .ForMember(bll => bll.User, dal => dal.MapFrom(b => b.UserDTO)); ;
                 
             });
             _mapper = config.CreateMapper();

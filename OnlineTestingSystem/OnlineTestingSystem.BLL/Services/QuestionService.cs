@@ -23,8 +23,8 @@ namespace OnlineTestingSystem.BLL.Services
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Question, QuestionDTO>()
-                .ForMember(bgv => bgv.QuestionCategoryDTO, opt => opt.MapFrom(b => b.QuestionCategory))
-                .ForMember(bgv => bgv.QuestionAnswersDTO, opt => opt.MapFrom(b => b.QuestionAnswers));
+                .ForMember(bll => bll.QuestionCategoryDTO, dal => dal.MapFrom(b => b.QuestionCategory))
+                .ForMember(bll => bll.QuestionAnswersDTO, dal => dal.MapFrom(b => b.QuestionAnswers));
                 cfg.CreateMap<QuestionDTO, Question>();
                 cfg.CreateMap<QuestionCategoryDTO, QuestionCategory>();
                 cfg.CreateMap<QuestionCategory, QuestionCategoryDTO>();
@@ -36,6 +36,10 @@ namespace OnlineTestingSystem.BLL.Services
 
         public void CreateQuestion(QuestionDTO question)
         {
+            var questionFromDB = GetQuestionByText(question.QuestionText);
+            if (questionFromDB != null)
+                throw new ValidationException("Sorry, but the question with the same text is exsist", "");
+
             var questionToAdd = _mapper.Map<QuestionDTO, Question>(question);
             db.Questions.Create(questionToAdd);            
             /*categoryId 123*/
@@ -58,10 +62,23 @@ namespace OnlineTestingSystem.BLL.Services
             return _mapper.Map<IEnumerable<Question>, IEnumerable<QuestionDTO>>(questions);
         }
 
+        public QuestionDTO GetQuestionByText(string questionText)
+        {
+            var question = db.Questions.Find(x=>x.QuestionText == questionText).FirstOrDefault();
+            return _mapper.Map<Question, QuestionDTO>(question);
+        }
+
         public QuestionDTO GetQuestionById(int id)
         {
             var question = db.Questions.Get(id);
             return _mapper.Map<Question, QuestionDTO>(question);
+        }
+
+        public void UpdateQuestion(QuestionDTO question)
+        {
+            var questionDAL = _mapper.Map<QuestionDTO, Question>(question);
+            db.Questions.Update(questionDAL);
+            db.Save();
         }
     }
 }

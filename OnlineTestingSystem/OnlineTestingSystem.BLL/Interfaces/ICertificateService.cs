@@ -11,7 +11,7 @@ namespace OnlineTestingSystem.BLL.Interfaces
     {
         IEnumerable<CertificateDTO> GetAllCertificates();
 
-        IEnumerable<CertificateDTO> GetCertificatesByUserId(int userId);
+        IEnumerable<CertificateDTO> GetCertificatesByUserId(int userId); //queryable
 
         CertificateDTO GetCertificateById(int id);
 

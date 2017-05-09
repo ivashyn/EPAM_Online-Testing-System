@@ -14,7 +14,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         {
             _certificateService = certificateService;
         }
-        // GET: Sertificate
+        // GET: Certificate
         public ActionResult Index()
         {
             return View();

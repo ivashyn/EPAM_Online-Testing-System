@@ -23,7 +23,7 @@ namespace OnlineTestingSystem.BLL.Services
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<QuestionAnswer, QuestionAnswerDTO>()
-                .ForMember(bgv => bgv.QuestionDTO, opt => opt.MapFrom(b => b.Question));
+                .ForMember(bll => bll.QuestionDTO, dal => dal.MapFrom(b => b.Question));
                 cfg.CreateMap<QuestionAnswerDTO, QuestionAnswer>();
                 cfg.CreateMap<QuestionDTO, Question>();
                 cfg.CreateMap<Question, QuestionDTO>();

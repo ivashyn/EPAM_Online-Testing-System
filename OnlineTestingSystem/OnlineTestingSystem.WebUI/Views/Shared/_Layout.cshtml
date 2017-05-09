@@ -22,7 +22,7 @@
 
             <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Catalog", "Index", "Catalog")</li>
+                    <li>@Html.ActionLink("Catalog", "AllTests", "Test")</li>
                     <li>@Html.ActionLink("Contacts", "Index", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
@@ -30,7 +30,12 @@
                 </ul>
                 <form class="navbar-form navbar-left pull-right">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Find sertificate by ID">
+                        @using (Html.BeginForm("Search", "Certificate", FormMethod.Post))
+                        {
+                            @*<p>@Html.TextBoxFor(x => x.CategoryName)</p>*@
+                            <input type="text" id="certificateNumber" name="certificateNumber" class="form-control" placeholder="Find sertificate by ID">
+                        }
+                        @*<input type="text" class="form-control" placeholder="Find sertificate by ID">*@
                     </div>
                 </form>
             </div>

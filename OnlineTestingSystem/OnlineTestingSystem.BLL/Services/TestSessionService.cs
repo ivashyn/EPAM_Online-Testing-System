@@ -22,8 +22,8 @@ namespace OnlineTestingSystem.BLL.Services
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<TestSession, TestSessionDTO>()
-                .ForMember(bgv => bgv.UserDTO, opt => opt.MapFrom(b => b.User))
-                .ForMember(bgv => bgv.TestDTO, opt => opt.MapFrom(b => b.Test));
+                .ForMember(bll => bll.UserDTO, dal => dal.MapFrom(b => b.User))
+                .ForMember(bll => bll.TestDTO, dal => dal.MapFrom(b => b.Test));
                 cfg.CreateMap<TestSessionDTO, TestSession>();
                 cfg.CreateMap<User, UserDTO>();
                 cfg.CreateMap<UserDTO, User>();
@@ -56,10 +56,23 @@ namespace OnlineTestingSystem.BLL.Services
 
         }
 
+        public TestSessionDTO GetLastSessionByUserIdAndTestId(int userId, int testId)
+        {
+            var session = db.TestSessions.Find(x => x.UserId == userId && x.TestId == testId).LastOrDefault();
+            return _mapper.Map<TestSession, TestSessionDTO>(session);
+        }
+
         public TestSessionDTO GetSessionById(int id)
         {
             var session = db.TestSessions.Get(id);
             return _mapper.Map<TestSession, TestSessionDTO>(session);
+        }
+
+        public void UpdateSession(TestSessionDTO session)
+        {
+            var testSession = _mapper.Map<TestSessionDTO, TestSession>(session);
+            db.TestSessions.Update(testSession);
+            db.Save();
         }
     }
 }

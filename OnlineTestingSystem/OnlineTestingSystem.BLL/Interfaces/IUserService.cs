@@ -15,5 +15,6 @@ namespace OnlineTestingSystem.BLL.Interfaces
         IEnumerable<CertificateDTO> GetUsersCertificates(int userId);
         void CreateUser(UserDTO user);
         void DeleteUser(int id);
+        void UpdateUser(UserDTO user);
     }
 }

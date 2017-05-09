@@ -11,7 +11,9 @@ namespace OnlineTestingSystem.BLL.Interfaces
     {
         IEnumerable<TestSessionDTO> GetAllSessions();
         TestSessionDTO GetSessionById(int id);
+        TestSessionDTO GetLastSessionByUserIdAndTestId(int userId, int testId);
         void CreateSession(TestSessionDTO session);
         void DeleteSession(int id);
+        void UpdateSession(TestSessionDTO session);
     }
 }

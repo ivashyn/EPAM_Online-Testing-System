@@ -3,21 +3,13 @@
     ViewBag.Title = "Test";
 }
 
-<h2>Test</h2>
+<h2>@Model.Name</h2>
 
-<p>@Model.Name</p>
+<p>Number of questions: @ViewBag.NumberOfQuestions</p>
 
-<p>@Model.ScoreToPass</p>
+<p>TimeLimit: @Model.Timelimit</p>
 
-<p>@Model.Timelimit</p>
 
-<p>@Model.QuestionCagegoryDTO.CategoryName</p>
-
-<div>
-    @foreach (var item in Model.QuestionCagegoryDTO.QuestionsDTO)
-    {
-        @item.QuestionText
-    }
-</div>
-
-<button>Start</button>
+<button>
+    @Html.ActionLink("Start", "Evaluation", "Test", new { testId = Model.Id }, new { @class = ""})
+</button>

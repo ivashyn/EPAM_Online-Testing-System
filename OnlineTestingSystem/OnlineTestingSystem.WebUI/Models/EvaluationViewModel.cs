@@ -12,6 +12,7 @@ namespace OnlineTestingSystem.WebUI.Models
         public List<QuestionViewModel> Questions { set; get; }
         public DateTime TimeStart { get; set; }
         public DateTime TimeFinish { get; set; }
+        public int TestSessionId { get; set; }
         public EvaluationViewModel(int testId)
         {
             TestId = testId;

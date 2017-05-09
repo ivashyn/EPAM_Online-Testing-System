@@ -1,11 +1,13 @@
 ﻿@model OnlineTestingSystem.WebUI.Models.QuestionViewModel
-<div style="border:1px solid black">
+<div style="border:1px solid black; display:none" id="Question_@Model.Id" class="question slider single-item">
     @Html.HiddenFor(x => x.Id)
-    <h3> @Model.QuestionText </h3>
-    @foreach (var a in Model.Answers)
+    <h3 style="text-align:center"> @Model.QuestionText </h3>
+    <br />
+    @for (int i = 0; i < Model.Answers.Count; i++)
     {
         <p>
-            @Html.RadioButtonFor(b => b.SelectedAnswer, a.Id)  @a.Answer
+            @Html.RadioButtonFor(b => b.SelectedAnswer, Model.Answers.ToList()[i].Id, new { @id="radioB"})  @Model.Answers.ToList()[i].Answer
         </p>
     }
+    <button type="button" id="buttonGetNextQuestion" onclick=ShowNextQuestion(this)>Next</button>
 </div>

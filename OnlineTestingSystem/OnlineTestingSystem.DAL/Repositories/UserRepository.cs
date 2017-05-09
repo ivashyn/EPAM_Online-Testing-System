@@ -47,6 +47,9 @@ namespace OnlineTestingSystem.DAL.Repositories
 
         public void Update(User item)
         {
+            var modelExsist = db.Users.Find(item.UserID);
+            if (modelExsist != null)
+                db.Entry(modelExsist).State = System.Data.Entity.EntityState.Detached;
             db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
     }
