@@ -1,0 +1,31 @@
+﻿@model IEnumerable<OnlineTestingSystem.WebUI.Models.TestSessionViewModel>
+@{
+    ViewBag.Title = "Results";
+}
+
+<h2>Results</h2>
+<br />
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Test</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in Model)
+        {
+            <tr>
+                <td>@session.TestName</td>
+                <td>@session.TimeStart.ToString("dd/MM/yyyy")</td>
+                <td>@session.TestTime.ToString(@"hh\:mm\:ss")</td>
+                <td>@session.Score</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

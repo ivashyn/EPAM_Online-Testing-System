@@ -1,0 +1,30 @@
+﻿@model IEnumerable<OnlineTestingSystem.BLL.ModelsDTO.CertificateDTO>
+@{
+    ViewBag.Title = "MyCertificates";
+}
+
+<h2>MyCertificates</h2>
+<br />
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Test</th>
+            <th>Score</th>
+            <th>Date</th>
+            <th>Certificate Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var certificate in Model)
+        {
+            <tr>
+                <td>@certificate.TestDTO.Name</td>
+                <td>@certificate.Score / maxScore</td>
+                <td>@certificate.TestDate.ToString("dd/MM/yyyy")</td>
+                <td>@certificate.CertificateNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>
