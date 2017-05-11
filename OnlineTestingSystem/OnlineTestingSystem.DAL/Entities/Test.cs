@@ -12,8 +12,7 @@ namespace OnlineTestingSystem.DAL.Entities
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(40)]
+        [Required, StringLength(40, MinimumLength = 3)]
         public string Name { get; set; }
 
         [Required]
@@ -22,7 +21,7 @@ namespace OnlineTestingSystem.DAL.Entities
         [Required]
         public byte Timelimit { get; set; }
 
-
+        [Required]
         public int QuestionCategoryId { get; set; }
         public virtual QuestionCategory QuestionCagegory { get; set; }
         public virtual ICollection<TestSession> TestSessions { get; set; }

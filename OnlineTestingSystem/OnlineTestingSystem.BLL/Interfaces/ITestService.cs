@@ -16,5 +16,6 @@ namespace OnlineTestingSystem.BLL.Interfaces
         void DeleteTest(int id);
         IEnumerable<QuestionDTO> GetTestQuestions(int testId);
         IEnumerable<QuestionAnswerDTO> GetTestAnswers(int testId);
+        int GetAmountOfQuestions(int testId);
     }
 }

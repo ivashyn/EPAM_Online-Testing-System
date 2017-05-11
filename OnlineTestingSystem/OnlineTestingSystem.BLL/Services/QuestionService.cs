@@ -25,7 +25,10 @@ namespace OnlineTestingSystem.BLL.Services
                 cfg.CreateMap<Question, QuestionDTO>()
                 .ForMember(bll => bll.QuestionCategoryDTO, dal => dal.MapFrom(b => b.QuestionCategory))
                 .ForMember(bll => bll.QuestionAnswersDTO, dal => dal.MapFrom(b => b.QuestionAnswers));
-                cfg.CreateMap<QuestionDTO, Question>();
+                cfg.CreateMap<QuestionDTO, Question>()
+                 .ForMember(bll => bll.QuestionCategory, dal => dal.MapFrom(b => b.QuestionCategoryDTO))
+                .ForMember(bll => bll.QuestionAnswers, dal => dal.MapFrom(b => b.QuestionAnswersDTO));
+                ;
                 cfg.CreateMap<QuestionCategoryDTO, QuestionCategory>();
                 cfg.CreateMap<QuestionCategory, QuestionCategoryDTO>();
                 cfg.CreateMap<QuestionAnswerDTO, QuestionAnswer>();
@@ -41,7 +44,7 @@ namespace OnlineTestingSystem.BLL.Services
                 throw new ValidationException("Sorry, but the question with the same text is exsist", "");
 
             var questionToAdd = _mapper.Map<QuestionDTO, Question>(question);
-            db.Questions.Create(questionToAdd);            
+            db.Questions.Create(questionToAdd);
             /*categoryId 123*/
             db.Save();
 
@@ -64,7 +67,7 @@ namespace OnlineTestingSystem.BLL.Services
 
         public QuestionDTO GetQuestionByText(string questionText)
         {
-            var question = db.Questions.Find(x=>x.QuestionText == questionText).FirstOrDefault();
+            var question = db.Questions.Find(x => x.QuestionText == questionText).FirstOrDefault();
             return _mapper.Map<Question, QuestionDTO>(question);
         }
 

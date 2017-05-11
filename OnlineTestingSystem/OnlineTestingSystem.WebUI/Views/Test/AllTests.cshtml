@@ -1,25 +1,34 @@
-﻿@model IEnumerable<OnlineTestingSystem.BLL.ModelsDTO.TestDTO>
+﻿@model IEnumerable<OnlineTestingSystem.WebUI.Models.TestViewModel>
 
 @{
-    ViewBag.Title = "AllTests";
+    ViewBag.Title = "Catalog";
 }
 
-<h2>AllTests</h2>
+<h2>Catalog</h2>
 <br />
 
-<div style="display:block; height:500px;">
-    @foreach (var test in Model)
-    {
-
-        <div class="col-md-4" style="display:block;">
-            <a href="@Url.Action("Test", "Test", new { @id = test.Id })">
-
-                <div style="border:1px solid black; padding:15px; margin:10px,15px; height:100px;">
-                    @Html.ActionLink(test.Name, "Test", "Test", new { id = test.Id }, new { @class = "" })
-                    
-                </div>
-            </a>
-        </div>
-
-    }
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Test</th>
+            <th>Number of Questions</th>
+            <th>Time Limit</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var test in Model)
+        {
+            <tr>
+                <td>@test.Name</td>
+                <td>@test.NumberOfQuestions</td>
+                <td>@test.Timelimit</td>
+                <td>
+                    <button class="btn-group-sm btn-info" onclick="location.href = '@Url.HttpRouteUrl("TestInfo", new { @testId = test.Id })';">
+                        →
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

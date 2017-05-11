@@ -13,7 +13,7 @@ namespace OnlineTestingSystem.DAL.Entities
         public int Id { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(10, MinimumLength =3)]
         public string CertificateNumber { get; set; }
 
         [Required]

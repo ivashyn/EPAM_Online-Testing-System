@@ -13,6 +13,15 @@ namespace OnlineTestingSystem.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapMvcAttributeRoutes();
+
+
+            //routes.MapRoute(
+            //    name: "DefaultError",
+            //    url: "Error/{id}",
+            //    defaults: new { controller = "Home", action = "Error", id = UrlParameter.Optional }
+            //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

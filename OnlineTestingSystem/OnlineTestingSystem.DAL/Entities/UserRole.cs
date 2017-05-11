@@ -12,7 +12,7 @@ namespace OnlineTestingSystem.DAL.Entities
         public byte UserRoleID { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(20, MinimumLength =3)]
         public string RoleName { get; set; }
 
 

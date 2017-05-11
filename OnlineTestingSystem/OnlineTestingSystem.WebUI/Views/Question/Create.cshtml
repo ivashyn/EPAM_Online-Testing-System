@@ -5,23 +5,21 @@
 
 <h2>Create</h2>
 
-
-@for (int i = 0; i < 4; i++)
-{
-    Model.QuestionAnswersDTO.Add(new OnlineTestingSystem.BLL.ModelsDTO.QuestionAnswerDTO());
+@{ if (Model.QuestionAnswersDTO.Count == 0)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Model.QuestionAnswersDTO.Add(new OnlineTestingSystem.BLL.ModelsDTO.QuestionAnswerDTO());
+        }
+    }
 }
 
 
 
-@using (Html.BeginForm("Create", "Question", FormMethod.Post, new { @class = "createQuestion" }))
+@using (Html.BeginForm("Create", "Question", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div id="errorText">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        </div>
 
         <div class="">
 

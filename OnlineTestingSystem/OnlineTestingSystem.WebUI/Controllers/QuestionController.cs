@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace OnlineTestingSystem.WebUI.Controllers
 {
+    [RoutePrefix("Question")]
     public class QuestionController : Controller
     {
         IQuestionService _questionService;
@@ -50,9 +51,11 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(questionToCreate);
         }
 
-        public ActionResult Update(int id)
+
+        [Route("Update/{questionId}")]
+        public ActionResult Update(int questionId)
         {
-            var question = _questionService.GetQuestionById(id);
+            var question = _questionService.GetQuestionById(questionId);
             if (question == null)
                 return HttpNotFound();
             ViewBag.Category = new SelectList(_questionCategoryService.GetAllCategories(), "Id", "CategoryName", question.QuestionCategoryId);
@@ -73,14 +76,10 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(question);
         }
 
-
-        public ActionResult Delete(int id)
+        [Route("Delete/{questinId}")]
+        public ActionResult Delete(int questinId)
         {
-            //if (testId == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            var question = _questionService.GetQuestionById(id);
+            var question = _questionService.GetQuestionById(questinId);
             if (question == null)
             {
                 return HttpNotFound();

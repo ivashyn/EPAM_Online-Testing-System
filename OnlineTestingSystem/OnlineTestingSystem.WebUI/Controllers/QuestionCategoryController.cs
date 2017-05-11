@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace OnlineTestingSystem.WebUI.Controllers
 {
+    [RoutePrefix("QuestionCategory")]
     public class QuestionCategoryController : Controller
     {
         IQuestionCategoryService _questionCategoryService;
@@ -39,13 +40,10 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(catetgoryToCreate);
         }
 
-        public ActionResult Delete(int id)
+        [Route("Delete/{categoryId}")]
+        public ActionResult Delete(int categoryId)
         {
-            //if (testId == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            var category = _questionCategoryService.GetCagetoryById(id);
+            var category = _questionCategoryService.GetCagetoryById(categoryId);
             if (category == null)
             {
                 return HttpNotFound();
@@ -59,14 +57,15 @@ namespace OnlineTestingSystem.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _questionCategoryService.DeleteCategory(id);
+            _questionCategoryService.DeleteCategory(id); //exeption 
             return RedirectToAction("Index", "Home");
         }
 
 
-        public ActionResult Update(int id)
+        [Route("Update/{categoryId}")]
+        public ActionResult Update(int categoryId)
         {
-            var category = _questionCategoryService.GetCagetoryById(id);
+            var category = _questionCategoryService.GetCagetoryById(categoryId);
             if (category == null)
                 return HttpNotFound();
 
@@ -87,4 +86,6 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
     }
+
+
 }

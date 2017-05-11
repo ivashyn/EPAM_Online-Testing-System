@@ -68,6 +68,12 @@ namespace OnlineTestingSystem.BLL.Services
             return _mapper.Map<TestSession, TestSessionDTO>(session);
         }
 
+        public IEnumerable<TestSessionDTO> GetSessionsByUserId(int userId)
+        {
+            var sessions = db.TestSessions.Find(s => s.UserId == userId);
+            return _mapper.Map<IEnumerable<TestSession>, IEnumerable<TestSessionDTO>>(sessions);
+        }
+
         public void UpdateSession(TestSessionDTO session)
         {
             var testSession = _mapper.Map<TestSessionDTO, TestSession>(session);

@@ -25,9 +25,10 @@ namespace OnlineTestingSystem.DAL.Entities
         //[Column(TypeName = "smalldatetime")]
         public DateTime TimeFinish { get; set; }
 
-        
+        [Required]
         public int UserId { get; set; }
         public virtual User User { get; set; }
+        [Required]
         public int TestId { get; set; }
         public virtual Test Test { get; set; }
     }

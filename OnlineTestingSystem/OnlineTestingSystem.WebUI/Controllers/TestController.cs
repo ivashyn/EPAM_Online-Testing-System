@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace OnlineTestingSystem.WebUI.Controllers
 {
+    [RoutePrefix("Test")]
     public class TestController : Controller
     {
         ITestService _testService;
@@ -38,7 +39,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 //.ForMember(b => b.SelectedAnswer, opt => opt.Ignore());
                 cfg.CreateMap<QuestionAnswerDTO, AnswerViewModel>()
                 .ForMember(b => b.QuestionViewMode, opt => opt.MapFrom(b => b.QuestionDTO));
-
+                cfg.CreateMap<TestDTO, TestViewModel>();
             });
             _mapper = config.CreateMapper();
         }
@@ -49,6 +50,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View();
         }
 
+        [Route("Evaluation/{testId}")]
         public ActionResult Evaluation(int testId)
         {
             var testQuestions = _testService.GetTestQuestions(testId);
@@ -176,9 +178,10 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 return RedirectToAction("Index", "Home");
             }
             ViewBag.Category = new SelectList(_questionCategoryService.GetAllCategories(), "Id", "CategoryName", test.QuestionCategoryId);
-            return View();
+            return View(test);
         }
 
+        [Route("Delete/{testId}")]
         public ActionResult Delete(int testId)
         {
             //if (testId == null)
@@ -203,7 +206,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
+        [Route("Update/{testId}")]
         public ActionResult Update(int testId)
         {
             var test = _testService.GetTestById(testId);
@@ -229,17 +232,26 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
 
-        //URl /Catalog
+        [Route("~/Catalog")]
         public ActionResult AllTests()
         {
             var allTests = _testService.GetAllTests();
-            return View(allTests);
+            var viewModelTests = _mapper.Map<IEnumerable<TestDTO>, IEnumerable<TestViewModel>>(allTests);
+
+            foreach (var test in viewModelTests)
+            {
+                test.NumberOfQuestions = _testService.GetAmountOfQuestions(test.Id);
+            }
+            return View(viewModelTests);
         }
 
-        public ActionResult Test(int id)
+        [Route("{testId}", Name ="TestInfo")]
+        public ActionResult Test(int testId)
         {
-            var test = _testService.GetTestById(id);
-            ViewBag.NumberOfQuestions = _testService.GetTestQuestions(id).Count();
+            var test = _testService.GetTestById(testId);
+            if (test == null)
+                return HttpNotFound();
+            ViewBag.NumberOfQuestions = _testService.GetTestQuestions(testId).Count();
 
             return View(test);
         }

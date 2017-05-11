@@ -12,28 +12,29 @@ namespace OnlineTestingSystem.DAL.Entities
         public int UserID { get; set; }
 
         [Required]
-        [StringLength(35)]
+        [StringLength(35, MinimumLength = 3)]
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(35)]
+        [StringLength(35, MinimumLength = 3)]
         public string LastName { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(100, MinimumLength = 3)]
         public string Login { get; set; }
 
         [Required]
-        [StringLength(300)]
+        [StringLength(300, MinimumLength = 3)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [StringLength(255, MinimumLength = 3)]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-
+        [Required]
         public byte UserRoleId { get; set; }
-       // public virtual UserRole UserRole { get; set; }
 
         public virtual ICollection<Certificate> Certificates { get; set; }
         public virtual ICollection<TestSession> TestSessions { get; set; }

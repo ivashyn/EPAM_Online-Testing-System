@@ -11,14 +11,15 @@ namespace OnlineTestingSystem.DAL.Entities
     {
         public int Id { get; set; }
 
+        [StringLength(1500, MinimumLength = 3)]
         [Required]
-        [StringLength(1500)]
+        [DataType(DataType.MultilineText)]
         public string QuestionText { get; set; }
 
         [Required]
         public int Score { get; set; }
 
-
+        [Required]
         public int QuestionCategoryId { get; set; }
         public virtual QuestionCategory QuestionCategory { get; set; }
         public virtual ICollection<QuestionAnswer> QuestionAnswers { get; set; }

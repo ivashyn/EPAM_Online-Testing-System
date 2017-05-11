@@ -96,6 +96,13 @@ namespace OnlineTestingSystem.BLL.Services
             return _mapper.Map<IEnumerable<Question>, IEnumerable<QuestionDTO>>(questions);
         }
 
+        public int GetAmountOfQuestions(int testId)
+        {
+            var test = db.Tests.Get(testId);
+            var categoryId = test.QuestionCategoryId;
+            return db.Questions.Find(q => q.QuestionCategoryId == categoryId).Count();
+        }
+
         public void UpdateTest(TestDTO test)
         {
             var testDAL = _mapper.Map<TestDTO, Test>(test);

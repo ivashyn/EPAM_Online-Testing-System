@@ -15,9 +15,10 @@ namespace OnlineTestingSystem.DAL.Entities
         public bool IsRight { get; set; }
 
         [Required]
-        [StringLength(300)]
+        [StringLength(300, MinimumLength = 2)]
         public string Answer { get; set; }
 
+        [Required]
         public int QuestionId { get; set; }
         public virtual Question Question { get; set; }
     }
