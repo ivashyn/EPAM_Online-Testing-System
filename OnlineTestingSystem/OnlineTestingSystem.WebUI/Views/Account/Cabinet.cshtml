@@ -1,0 +1,13 @@
+﻿@model OnlineTestingSystem.BLL.ModelsDTO.UserDTO
+@{
+    ViewBag.Title = "Cabinet";
+}
+
+<h2>Cabinet</h2>
+
+<div>
+    @Model.FirstName @Model.LastName
+</div>
+
+@Html.ActionLink("Certificates","MyCertificates","Account")
+@Html.ActionLink("Sessions", "MyTestsSessions", "Account")
