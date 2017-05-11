@@ -11,6 +11,6 @@ namespace OnlineTestingSystem.WebUI.Models
         public string Answer { set; get; }
         public bool IsRight { get; set; }
         public int QuestionId { get; set; }
-        public QuestionViewModel QuestionViewMode { get; set; }
+        public QuestionViewModel QuestionViewModel { get; set; }
     }
 }

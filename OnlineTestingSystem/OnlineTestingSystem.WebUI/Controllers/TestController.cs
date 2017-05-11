@@ -40,18 +40,14 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 .ForMember(bgv => bgv.Answers, opt => opt.MapFrom(b => b.QuestionAnswersDTO));
                 //.ForMember(b => b.SelectedAnswer, opt => opt.Ignore());
                 cfg.CreateMap<QuestionAnswerDTO, AnswerViewModel>()
-                .ForMember(b => b.QuestionViewMode, opt => opt.MapFrom(b => b.QuestionDTO));
+                .ForMember(b => b.QuestionViewModel, opt => opt.MapFrom(b => b.QuestionDTO));
                 cfg.CreateMap<TestDTO, TestViewModel>();
             });
             _mapper = config.CreateMapper();
         }
 
-        // GET: Test
-        public ActionResult Index()
-        {
-            return View();
-        }
 
+        [Authorize]
         [Route("Evaluation/{testId}")]
         public ActionResult Evaluation(int testId)
         {
@@ -85,6 +81,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
 
 
         [HttpPost]
+        [Route("Evaluation")]
         [ValidateAntiForgeryToken]
         public ActionResult Evaluation(EvaluationViewModel model)
         {
@@ -166,6 +163,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
 
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public ActionResult Create()
         {
             ViewBag.Category = new SelectList(_questionCategoryService.GetAllCategories(), "Id", "CategoryName");
@@ -185,13 +183,10 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(test);
         }
 
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [Route("Delete/{testId}")]
         public ActionResult Delete(int testId)
         {
-            //if (testId == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
             var test = _testService.GetTestById(testId);
             if (test == null)
             {
@@ -201,7 +196,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(test);
         }
 
-
+        [Route("Delete/{testId}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int testId)
@@ -210,6 +205,8 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [Route("Update/{testId}")]
         public ActionResult Update(int testId)
         {
@@ -221,6 +218,8 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(test);
         }
 
+
+        [Route("Update")]
         [HttpPost, ActionName("Update")]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateTest(TestDTO test)

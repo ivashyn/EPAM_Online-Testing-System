@@ -13,7 +13,7 @@ namespace OnlineTestingSystem.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //routes.MapMvcAttributeRoutes();
+            routes.MapMvcAttributeRoutes();
 
 
             //routes.MapRoute(

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace OnlineTestingSystem.WebUI.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     [RoutePrefix("Question")]
     public class QuestionController : Controller
     {
@@ -21,6 +22,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             _questionAnswerService = questionAnswerService;
             _questionCategoryService = questionCategoryService;
         }
+
         // GET: Question
         public ActionResult Index()
         {
@@ -63,6 +65,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(question);
         }
 
+        [Route("Update")]
         [HttpPost, ActionName("Update")]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateQuestion(QuestionDTO question)
@@ -76,10 +79,10 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(question);
         }
 
-        [Route("Delete/{questinId}")]
-        public ActionResult Delete(int questinId)
+        [Route("Delete/{questionId}")]
+        public ActionResult Delete(int questionId)
         {
-            var question = _questionService.GetQuestionById(questinId);
+            var question = _questionService.GetQuestionById(questionId);
             if (question == null)
             {
                 return HttpNotFound();
@@ -89,11 +92,12 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
 
+        [Route("Delete/{questionId}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int questionId)
         {
-            _questionService.DeleteQuestion(id);
+            _questionService.DeleteQuestion(questionId);
             return RedirectToAction("Index", "Home");
         }
     }

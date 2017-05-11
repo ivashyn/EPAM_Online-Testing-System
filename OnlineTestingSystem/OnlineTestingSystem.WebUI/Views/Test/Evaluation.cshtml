@@ -12,7 +12,7 @@
     Model.TimeStart = @DateTime.Now;
 }
 
-@using (Html.BeginForm("Evaluation", "Test", FormMethod.Post, new { id = "testForm" }))
+@using (Html.BeginForm("Evaluation", "Test", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

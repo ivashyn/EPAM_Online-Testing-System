@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace OnlineTestingSystem.WebUI.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     [RoutePrefix("QuestionCategory")]
     public class QuestionCategoryController : Controller
     {
@@ -53,11 +54,12 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
 
+        [Route("Delete/{categoryId}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int categoryId)
         {
-            _questionCategoryService.DeleteCategory(id); //exeption 
+            _questionCategoryService.DeleteCategory(categoryId);
             return RedirectToAction("Index", "Home");
         }
 
@@ -72,6 +74,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(category);
         }
 
+        [Route("Update/")]
         [HttpPost, ActionName("Update")]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateCategory(QuestionCategoryDTO category)

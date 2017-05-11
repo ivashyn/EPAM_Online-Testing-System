@@ -39,8 +39,9 @@ namespace OnlineTestingSystem.WebUI.Controllers
             });
             _mapper = config.CreateMapper();
         }
+
         // GET: Login
-        public ActionResult Index()
+        public ActionResult Registration()
         {
             return View("Registration");
         }
@@ -57,21 +58,23 @@ namespace OnlineTestingSystem.WebUI.Controllers
 
         }
 
+        [Authorize]
         [Route("~/Cabinet/Certificates")]
         public ActionResult MyCertificates()
         {
             var email = User.Identity.Name;
-            var userId = _userService.GetUserByEmail(email).UserID;  //Remake this
+            var userId = _userService.GetUserByEmail(email).UserID;
             var certificates = _certificateService.GetCertificatesByUserId(userId);
             return View(certificates);
         }
 
 
         [Route("~/Cabinet/Results")]
+        [Authorize]
         public ActionResult MyTestsSessions()
         {
             var user = _userService.GetUserByEmail(User.Identity.Name);
-            var userId = user.UserID;  //Remake this
+            var userId = user.UserID;
             var sessions = _testSessionService.GetSessionsByUserId(userId);
             var viewModelSessions = _mapper.Map<IEnumerable<TestSessionDTO>, IEnumerable<TestSessionViewModel>>(sessions);
             foreach (var session in viewModelSessions)
@@ -81,6 +84,13 @@ namespace OnlineTestingSystem.WebUI.Controllers
             }
 
             return View(viewModelSessions);
+        }
+
+        [Authorize]
+        public ActionResult Cabinet()
+        {
+            var user = _userService.GetUserByEmail(User.Identity.Name);
+            return View(user);
         }
 
 
