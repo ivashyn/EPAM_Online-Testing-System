@@ -64,6 +64,12 @@ namespace OnlineTestingSystem.BLL.Services
             return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
         }
 
+        public UserDTO GetUserByLogin(string login)
+        {
+            var user = db.Users.Find(u => u.Login == login).FirstOrDefault();
+            return _mapper.Map<User, UserDTO>(user);
+        }
+
         public UserDTO GetUserByEmail(string email)
         {
             var user = db.Users.Find(u => u.Email == email).FirstOrDefault();

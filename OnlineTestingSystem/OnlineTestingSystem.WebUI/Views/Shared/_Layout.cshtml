@@ -26,7 +26,18 @@
                     <li>@Html.ActionLink("Contacts", "Index", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
-                    <li>@Html.ActionLink("Login", "About", "Home")</li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                        <li>@Html.ActionLink("Registration", "Register", "Account")</li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a>@User.Identity.Name</a>
+                        </li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
                 </ul>
                 <form class="navbar-form navbar-left pull-right">
                     <div class="form-group">
@@ -35,7 +46,6 @@
                             @*<p>@Html.TextBoxFor(x => x.CategoryName)</p>*@
                             <input type="text" id="certificateNumber" name="certificateNumber" class="form-control" placeholder="Find sertificate by ID">
                         }
-                        @*<input type="text" class="form-control" placeholder="Find sertificate by ID">*@
                     </div>
                 </form>
             </div>

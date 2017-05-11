@@ -17,13 +17,14 @@ namespace OnlineTestingSystem.WebUI.Controllers
         ITestService _testService;
         ITestSessionService _testSessionService;
         ICertificateService _certificateService;
+        IUserService _userService;
         IQuestionAnswerService _questionAnswerService;
         IQuestionService _questionService;
         IQuestionCategoryService _questionCategoryService;
         IMapper _mapper;
 
         public TestController(ITestService testService, IQuestionAnswerService questionAnswerService, IQuestionCategoryService questionCategoryService,
-                            IQuestionService questionService, ITestSessionService testSessionService, ICertificateService certificateService)
+                            IQuestionService questionService, ITestSessionService testSessionService, ICertificateService certificateService, IUserService userService)
         {
             _testService = testService;
             _questionAnswerService = questionAnswerService;
@@ -31,6 +32,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             _questionCategoryService = questionCategoryService;
             _testSessionService = testSessionService;
             _certificateService = certificateService;
+            _userService = userService;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -62,6 +64,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             }
 
             var test = _testService.GetTestById(testId);
+            var user = _userService.GetUserByEmail(User.Identity.Name);
             ViewBag.TimeLimit = test.Timelimit;
             ViewBag.TestName = test.Name;
 
@@ -72,10 +75,10 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 TestId = testId,
                 TimeStart = DateTime.Now,
                 TimeFinish = DateTime.Now,
-                UserId = 2  // Remake this later
+                UserId = user.UserID// 2  // Remake this later
             };
             _testSessionService.CreateSession(testSession);
-            var testSessionId = _testSessionService.GetLastSessionByUserIdAndTestId(2, testId).Id;  //remake THis!!!
+            var testSessionId = _testSessionService.GetLastSessionByUserIdAndTestId(user.UserID, testId).Id;  //remake THis!!!
             evaluationViewModel.TestSessionId = testSessionId;
             return View(evaluationViewModel);
         }
@@ -150,13 +153,14 @@ namespace OnlineTestingSystem.WebUI.Controllers
 
         private void CreateCertificate(int testId, int score)
         {
+            var user = _userService.GetUserByEmail(User.Identity.Name);
             var certificate = new CertificateDTO
             {
                 Score = score,
                 CertificateNumber = "000013",  //Remake This . . . . . . . . . . . . . . 
                 TestDate = DateTime.Now,
                 TestId = testId,
-                UserId = 2  //Remake This . . . . . . . . . . . . . . 
+                UserId = user.UserID// 2  //Remake This . . . . . . . . . . . . . . 
             };
             _certificateService.CreateCertificate(certificate);
         }

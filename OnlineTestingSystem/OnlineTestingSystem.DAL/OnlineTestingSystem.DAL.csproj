@@ -36,6 +36,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -47,14 +53,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EFContexts\ApplicationContext.cs" />
     <Compile Include="Entities\Certificate.cs" />
+    <Compile Include="Entities\Identity\ApplicationRole.cs" />
+    <Compile Include="Entities\Identity\ApplicationUser.cs" />
+    <Compile Include="Entities\Identity\UserProfile.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\QuestionAnswer.cs" />
     <Compile Include="Entities\QuestionCategory.cs" />
     <Compile Include="Entities\TestSession.cs" />
     <Compile Include="Entities\UserRole.cs" />
     <Compile Include="EFContexts\TestContext.cs" />
+    <Compile Include="Identity\ApplicationRoleManager.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Interfaces\IClientManager.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWorkApplication.cs" />
     <Compile Include="Interfaces\IUnitOfWorkTest.cs" />
     <Compile Include="Interfaces\IUnitOfWorkUser.cs" />
     <Compile Include="Migrations\201705102201410_Migrations.cs" />
@@ -67,6 +81,8 @@
     <Compile Include="Entities\Test.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Repositories\CertificateRepository.cs" />
+    <Compile Include="Repositories\ClientManager.cs" />
+    <Compile Include="Repositories\IdentityUnitOfWork.cs" />
     <Compile Include="Repositories\QuestionAnswerRepository.cs" />
     <Compile Include="Repositories\QuestionCategoriesRepository.cs" />
     <Compile Include="Repositories\QuestionRepository.cs" />

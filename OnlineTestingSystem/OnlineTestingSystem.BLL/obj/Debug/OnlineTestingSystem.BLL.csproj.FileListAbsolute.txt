@@ -15,3 +15,7 @@ D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\Auto
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\Ninject.dll
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\AutoMapper.xml
 D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\Ninject.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\zevas\EPAM\Project\OnlineTestingSystem\OnlineTestingSystem.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

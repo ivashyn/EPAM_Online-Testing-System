@@ -39,6 +39,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -53,14 +59,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\OperationDetails.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\ICertificateService.cs" />
     <Compile Include="Interfaces\IQuestionAnswerService.cs" />
     <Compile Include="Interfaces\IQuestionCategoryService.cs" />
     <Compile Include="Interfaces\IQuestionService.cs" />
+    <Compile Include="Interfaces\IServiceCreator.cs" />
     <Compile Include="Interfaces\ITestSessionService.cs" />
     <Compile Include="Interfaces\ITestService.cs" />
+    <Compile Include="Interfaces\IUserAppService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="ModelsDTO\CertificateDTO.cs" />
     <Compile Include="ModelsDTO\QuestionAnswerDTO.cs" />
@@ -75,8 +84,10 @@
     <Compile Include="Services\QuestionCategoryService.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="Services\CertificateService.cs" />
+    <Compile Include="Services\ServiceCreator.cs" />
     <Compile Include="Services\TestSessionService.cs" />
     <Compile Include="Services\TestService.cs" />
+    <Compile Include="Services\UserAppService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
