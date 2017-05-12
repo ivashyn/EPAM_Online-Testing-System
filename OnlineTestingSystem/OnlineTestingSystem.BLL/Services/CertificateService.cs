@@ -78,5 +78,17 @@ namespace OnlineTestingSystem.BLL.Services
             var sertificates = db.Certificates.Find(s => s.UserId == userId);
             return _mapper.Map<IEnumerable<Certificate>, IEnumerable<CertificateDTO>>(sertificates);
         }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
+
+        public IEnumerable<CertificateDTO> GetNCertificatesByUserId(int userId, int amountToTake, int amountToSkip)
+        {
+            var certificates = GetCertificatesByUserId(userId).Skip(amountToSkip).Take(amountToTake);
+            return certificates;
+
+        }
     }
 }

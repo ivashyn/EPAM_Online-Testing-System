@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.BLL.Interfaces
 {
-    public interface ICertificateService
+    public interface ICertificateService : IDisposable
     {
         IEnumerable<CertificateDTO> GetAllCertificates();
 
         IEnumerable<CertificateDTO> GetCertificatesByUserId(int userId); //queryable
+        IEnumerable<CertificateDTO> GetNCertificatesByUserId(int userId, int amountToTake, int amountToSkip);
 
         CertificateDTO GetCertificateById(int id);
 

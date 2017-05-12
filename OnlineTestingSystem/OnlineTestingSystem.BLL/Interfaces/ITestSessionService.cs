@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.BLL.Interfaces
 {
-    public interface ITestSessionService
+    public interface ITestSessionService : IDisposable
     {
         IEnumerable<TestSessionDTO> GetAllSessions();
         IEnumerable<TestSessionDTO> GetSessionsByUserId(int userId);
+        IEnumerable<TestSessionDTO> GetNSessionsByUserId(int userId, int amountToTake, int amountToSkip);
         TestSessionDTO GetSessionById(int id);
         TestSessionDTO GetLastSessionByUserIdAndTestId(int userId, int testId);
         void CreateSession(TestSessionDTO session);

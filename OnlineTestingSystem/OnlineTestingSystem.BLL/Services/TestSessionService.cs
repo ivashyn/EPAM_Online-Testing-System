@@ -80,5 +80,16 @@ namespace OnlineTestingSystem.BLL.Services
             db.TestSessions.Update(testSession);
             db.Save();
         }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
+
+        public IEnumerable<TestSessionDTO> GetNSessionsByUserId(int userId, int amountToTake, int amountToSkip)
+        {
+            var sessions = GetSessionsByUserId(userId).Skip(amountToSkip).Take(amountToTake);
+            return sessions;
+        }
     }
 }

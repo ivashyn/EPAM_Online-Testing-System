@@ -68,5 +68,10 @@ namespace OnlineTestingSystem.BLL.Services
             db.QuestionCategories.Update(questionCategory);
             db.Save();
         }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
     }
 }

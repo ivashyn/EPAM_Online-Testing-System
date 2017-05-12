@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.BLL.Interfaces
 {
-    public interface IUserService /*: IDisposable*/
+    public interface IUserService : IDisposable
     {
         IEnumerable<UserDTO> GetAllUsers();
+        IEnumerable<UserDTO> GetNUsers(int amountToTake, int amountToSkip);
         UserDTO GetUserByEmail(string email);
         UserDTO GetUserById(int id);
         UserDTO GetUserByLogin(string login);

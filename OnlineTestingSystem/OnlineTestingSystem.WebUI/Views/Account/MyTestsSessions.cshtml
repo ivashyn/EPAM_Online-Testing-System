@@ -1,4 +1,5 @@
-﻿@model IEnumerable<OnlineTestingSystem.WebUI.Models.TestSessionViewModel>
+﻿@model OnlineTestingSystem.WebUI.Models.PaginationModels.IndexSessionViewModel
+@using OnlineTestingSystem.WebUI.Helpers
 @{
     ViewBag.Title = "Results";
 }
@@ -17,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var session in Model)
+        @foreach (var session in Model.Sessions)
         {
             <tr>
                 <td>@session.TestName</td>
@@ -29,3 +30,8 @@
     </tbody>
 </table>
 
+
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Results", "Cabinet", new { page = x }))
+</div>

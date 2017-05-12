@@ -109,5 +109,10 @@ namespace OnlineTestingSystem.BLL.Services
             db.Tests.Update(testDAL);
             db.Save();
         }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
     }
 }

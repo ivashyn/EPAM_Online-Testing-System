@@ -6,6 +6,7 @@ using OnlineTestingSystem.BLL.Interfaces;
 using OnlineTestingSystem.BLL.ModelsDTO;
 using OnlineTestingSystem.BLL.Services;
 using OnlineTestingSystem.WebUI.Models;
+using OnlineTestingSystem.WebUI.Models.PaginationModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace OnlineTestingSystem.WebUI.Controllers
         ICertificateService _certificateService;
         ITestSessionService _testSessionService;
         IMapper _mapper;
+        private int certificatesPerPage = 10;
+        private int sessionsPerPage = 10;
 
         public AccountController(IUserService userService, ICertificateService certificateService, ITestSessionService testSessionService)
         {
@@ -60,22 +63,38 @@ namespace OnlineTestingSystem.WebUI.Controllers
 
         [Authorize]
         [Route("~/Cabinet/Certificates")]
-        public ActionResult MyCertificates()
+        public ActionResult MyCertificates(int page = 1)
         {
             var email = User.Identity.Name;
             var userId = _userService.GetUserByEmail(email).UserID;
-            var certificates = _certificateService.GetCertificatesByUserId(userId);
-            return View(certificates);
+            var allUserCertificates = _certificateService.GetCertificatesByUserId(userId);
+
+            int totalCertificates = allUserCertificates.Count();
+            var certificates = _certificateService.GetNCertificatesByUserId(userId, certificatesPerPage, (page - 1) * certificatesPerPage);
+
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = certificatesPerPage, TotalItems = totalCertificates };
+            var icvm = new IndexCertificatesViewModel { PageInfo = pageInfo, Certificates = certificates };
+
+            return View(icvm);
         }
 
 
         [Route("~/Cabinet/Results")]
         [Authorize]
-        public ActionResult MyTestsSessions()
+        public ActionResult MyTestsSessions(int page = 1)
         {
             var user = _userService.GetUserByEmail(User.Identity.Name);
             var userId = user.UserID;
-            var sessions = _testSessionService.GetSessionsByUserId(userId);
+            var allUserSessions = _testSessionService.GetSessionsByUserId(userId);
+            var allViewModelSessions = _mapper.Map<IEnumerable<TestSessionDTO>, IEnumerable<TestSessionViewModel>>(allUserSessions);
+            //foreach (var session in allViewModelSessions)
+            //{
+            //    session.TestTime = session.TimeFinish.Subtract(session.TimeStart);
+            //    //session.TestName = 
+            //}
+
+            int totalSessions = allViewModelSessions.Count();
+            var sessions = _testSessionService.GetNSessionsByUserId(userId, sessionsPerPage, (page - 1) * sessionsPerPage);
             var viewModelSessions = _mapper.Map<IEnumerable<TestSessionDTO>, IEnumerable<TestSessionViewModel>>(sessions);
             foreach (var session in viewModelSessions)
             {
@@ -83,7 +102,11 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 //session.TestName = 
             }
 
-            return View(viewModelSessions);
+
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = sessionsPerPage, TotalItems = totalSessions };
+            var icvm = new IndexSessionViewModel { PageInfo = pageInfo, Sessions = viewModelSessions };
+
+            return View(icvm);
         }
 
         [Authorize]
@@ -126,7 +149,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 ClaimsIdentity claim = await UserAppService.Authenticate(userDto);
                 if (claim == null)
                 {
-                    ModelState.AddModelError("", "Неверный логин или пароль.");
+                    ModelState.AddModelError("", "Invalid Login / Password.");
                 }
                 else
                 {

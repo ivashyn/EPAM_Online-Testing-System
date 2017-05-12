@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.BLL.Interfaces
 {
-    public interface IQuestionCategoryService
+    public interface IQuestionCategoryService : IDisposable
     {
         IEnumerable<QuestionCategoryDTO> GetAllCategories();
         QuestionCategoryDTO GetCagetoryById(int id);

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.BLL.Interfaces
 {
-    public interface IQuestionService
+    public interface IQuestionService : IDisposable
     {
         IEnumerable<QuestionDTO> GetAllQuestions();
+        IEnumerable<QuestionDTO> GetNQuestions(int amountToTake, int amountToSkip);
         QuestionDTO GetQuestionById(int id);
         QuestionDTO GetQuestionByText(string questionText);
         void CreateQuestion(QuestionDTO question);

@@ -1,20 +1,38 @@
-﻿@model IEnumerable<OnlineTestingSystem.BLL.ModelsDTO.UserDTO>
+﻿@model OnlineTestingSystem.WebUI.Models.PaginationModels.IndexUserViewModel
+@using OnlineTestingSystem.WebUI.Helpers
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Users";
 }
 
 <h2>Users</h2>
 
-@foreach (var user in Model)
-{
-    <div>
-        <p>
-            @user.LastName
-            @user.FirstName
-            @user.Login
-            @user.Email
-            @user.UserRole
-        </p>
-    </div>
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.FirstName @user.LastName</td>
+                <td>@user.Email</td>
+                <td>@user.UserRole</td>
+                <td>
+                    @Html.ActionLink("Update |","Update/"+user.UserID,"Users")
+                    @Html.ActionLink("Delete", "Delete/" + user.UserID, "Users")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
+
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>

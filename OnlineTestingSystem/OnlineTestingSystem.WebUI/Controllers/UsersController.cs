@@ -2,6 +2,7 @@
 using OnlineTestingSystem.BLL.Interfaces;
 using OnlineTestingSystem.BLL.ModelsDTO;
 using OnlineTestingSystem.WebUI.Models;
+using OnlineTestingSystem.WebUI.Models.PaginationModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,12 @@ using System.Web.Mvc;
 namespace OnlineTestingSystem.WebUI.Controllers
 {
     [RoutePrefix("Users")]
-    [Authorize(Roles = "SuperAdmin, Admin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class UsersController : Controller
     {
         IUserService _userService;
         IMapper _mapper;
+        private int usersPerPage = 10;
 
         public UsersController(IUserService userService)
         {
@@ -23,8 +25,8 @@ namespace OnlineTestingSystem.WebUI.Controllers
 
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<UserViewModel,UserDTO>().ForMember(u => u.UserRole,
-                        dal => dal.MapFrom(udto =>(UserRoleDTO)Enum.Parse(typeof(UserRoleDTO), udto.Role.ToString())));
+                cfg.CreateMap<UserViewModel, UserDTO>().ForMember(u => u.UserRole,
+                        dal => dal.MapFrom(udto => (UserRoleDTO)Enum.Parse(typeof(UserRoleDTO), udto.Role.ToString())));
                 ;
                 cfg.CreateMap<UserDTO, UserViewModel>()
                .ForMember(u => u.Role,
@@ -34,10 +36,14 @@ namespace OnlineTestingSystem.WebUI.Controllers
             _mapper = config.CreateMapper();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var users = _userService.GetAllUsers(); //pagination
-            return View(users);
+            int totalUsers = _userService.GetAllUsers().Count();
+            var users = _userService.GetNUsers(usersPerPage, (page - 1) * usersPerPage);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = usersPerPage, TotalItems = totalUsers };
+            var iuvm = new IndexUserViewModel { PageInfo = pageInfo, Users = users };
+
+            return View(iuvm);
         }
 
 

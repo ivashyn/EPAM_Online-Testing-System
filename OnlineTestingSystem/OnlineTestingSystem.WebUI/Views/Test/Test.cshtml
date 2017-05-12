@@ -10,6 +10,6 @@
 <p>TimeLimit: @Model.Timelimit</p>
 
 
-<button>
-    @Html.ActionLink("Start", "Evaluation", "Test", new { testId = Model.Id }, new { @class = ""})
+<button class="btn btn-info">
+    @Html.ActionLink("Start", "Evaluation/" + @Model.Id, "Test")
 </button>

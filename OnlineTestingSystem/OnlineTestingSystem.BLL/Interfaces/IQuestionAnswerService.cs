@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.BLL.Interfaces
 {
-    public interface IQuestionAnswerService
+    public interface IQuestionAnswerService : IDisposable
     {
         IEnumerable<QuestionAnswerDTO> GetAllAnswers();
         IEnumerable<QuestionAnswerDTO> GetAnswersByQuestionId(int questionId);

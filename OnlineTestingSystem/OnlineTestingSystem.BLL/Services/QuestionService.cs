@@ -83,5 +83,16 @@ namespace OnlineTestingSystem.BLL.Services
             db.Questions.Update(questionDAL);
             db.Save();
         }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
+
+        public IEnumerable<QuestionDTO> GetNQuestions(int amountToTake, int amountToSkip)
+        {
+            var questions = db.Questions.GetAll().Skip(amountToSkip).Take(amountToTake);
+            return _mapper.Map<IEnumerable<Question>, IEnumerable<QuestionDTO>>(questions);
+        }
     }
 }

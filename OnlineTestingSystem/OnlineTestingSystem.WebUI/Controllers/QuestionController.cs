@@ -1,5 +1,7 @@
 ﻿using OnlineTestingSystem.BLL.Interfaces;
 using OnlineTestingSystem.BLL.ModelsDTO;
+using OnlineTestingSystem.WebUI.Models;
+using OnlineTestingSystem.WebUI.Models.PaginationModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         IQuestionService _questionService;
         IQuestionAnswerService _questionAnswerService;
         IQuestionCategoryService _questionCategoryService;
+        private int questionsPerPage = 10;
 
         public QuestionController(IQuestionService questionService, IQuestionAnswerService questionAnswerService, IQuestionCategoryService questionCategoryService)
         {
@@ -24,9 +27,15 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
         // GET: Question
-        public ActionResult Index()
+        [Authorize(Roles = ("SuperAdmin, Admin"))]
+        public ActionResult Index(int page = 1)
         {
-            return View();
+            int totalQuestions = _questionService.GetAllQuestions().Count();
+            var questions = _questionService.GetNQuestions(questionsPerPage, (page - 1) * questionsPerPage);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = questionsPerPage, TotalItems = totalQuestions };
+            var iqvm = new IndexQuestionViewModel { PageInfo = pageInfo, Questions = questions };
+
+            return View(iqvm);
         }
 
         public ActionResult Create()
@@ -47,6 +56,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 {
                     answer.QuestionId = questionId;
                     _questionAnswerService.CreateAnswer(answer);
+                    return RedirectToAction("Index", "Question");
                 }
             }
             ViewBag.Category = new SelectList(_questionCategoryService.GetAllCategories(), "Id", "CategoryName", questionToCreate.QuestionCategoryId);
@@ -88,17 +98,17 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 return HttpNotFound();
             }
 
-            return View(question);
+            return View("Index");
         }
 
 
         [Route("Delete/{questionId}")]
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int questionId)
         {
             _questionService.DeleteQuestion(questionId);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Question");
         }
     }
 }

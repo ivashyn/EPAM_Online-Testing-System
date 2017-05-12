@@ -65,5 +65,10 @@ namespace OnlineTestingSystem.BLL.Services
             var answers = db.QuestionAnswers.Find(q => q.QuestionId == questionId);
             return _mapper.Map<IEnumerable<QuestionAnswer>, IEnumerable<QuestionAnswerDTO>>(answers);
         }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
     }
 }

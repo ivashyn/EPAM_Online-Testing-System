@@ -1,0 +1,63 @@
+﻿@model OnlineTestingSystem.WebUI.Models.PaginationModels.IndexQuestionViewModel
+@using OnlineTestingSystem.WebUI.Helpers
+@{
+    ViewBag.Title = "Questions";
+}
+
+<h2>Questions</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Category</th>
+            <th>Score</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model.Questions)
+        {
+            <tr id="@question.Id">
+                <td>@question.QuestionText</td>
+                <td>@question.QuestionCategoryDTO.CategoryName</td>
+                <td>@question.Score</td>
+                <td>
+                    @Html.ActionLink("Update |", "Update/" + question.Id, "Question")
+                    <a href="" onclick="Delete(@question.Id)">Delete</a>
+                    @Html.ActionLink("Delete", "Delete/" + question.Id, "Question")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.ActionLink("Create new", "Create", "Question")
+
+
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>
+
+
+<script>
+    function Delete(id) {
+        var answer = confirm("Do you realy want to delete this question?");
+        if (answer) {
+            $.ajax({
+            type: "POST",
+            url: "@Url.Action("Delete/","Question")"+ id,
+            ajaxasync: true,
+            success: function (data) {
+                alert("success");
+                $("#" + id).closest("tr").remove();
+                window.location.replace("@Url.Action("Index", "Question")");
+            },
+            error: function () {
+            }
+            });
+            
+        };
+    }
+</script>

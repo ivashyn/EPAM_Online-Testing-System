@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineTestingSystem.BLL.Interfaces
 {
-    public interface ITestService
+    public interface ITestService : IDisposable
     {
         IEnumerable<TestDTO> GetAllTests();
         TestDTO GetTestById(int id);

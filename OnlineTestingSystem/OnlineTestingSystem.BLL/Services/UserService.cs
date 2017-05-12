@@ -54,6 +54,8 @@ namespace OnlineTestingSystem.BLL.Services
             var userToDelete = GetUserById(id);
             if (userToDelete == null)
                 throw new ValidationException("Sorry, but the user doesn't exsist", "");
+            if (userToDelete.Email == "ivashyn.vadym@gmail.com")
+                throw new ValidationException("Sorry, but you can't delete this user","");
             db.Users.Delete(id);
             db.Save();
         }
@@ -111,6 +113,17 @@ namespace OnlineTestingSystem.BLL.Services
             }
 
             return sb.ToString();
+        }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
+
+        public IEnumerable<UserDTO> GetNUsers(int amountToTake, int amountToSkip)
+        {
+            var users = db.Users.GetAll().Skip(amountToSkip).Take(amountToTake);
+            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
         }
     }
 }

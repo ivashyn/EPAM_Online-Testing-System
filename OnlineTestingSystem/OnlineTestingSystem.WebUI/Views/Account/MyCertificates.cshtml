@@ -1,4 +1,5 @@
-﻿@model IEnumerable<OnlineTestingSystem.BLL.ModelsDTO.CertificateDTO>
+﻿@model OnlineTestingSystem.WebUI.Models.PaginationModels.IndexCertificatesViewModel
+@using OnlineTestingSystem.WebUI.Helpers
 @{
     ViewBag.Title = "MyCertificates";
 }
@@ -17,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var certificate in Model)
+        @foreach (var certificate in Model.Certificates)
         {
             <tr>
                 <td>@certificate.TestDTO.Name</td>
@@ -28,3 +29,8 @@
         }
     </tbody>
 </table>
+
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Certificates","Cabinet", new { page = x }))
+</div>
