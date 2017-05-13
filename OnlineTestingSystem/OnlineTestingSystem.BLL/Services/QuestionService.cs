@@ -45,9 +45,15 @@ namespace OnlineTestingSystem.BLL.Services
 
             var questionToAdd = _mapper.Map<QuestionDTO, Question>(question);
             db.Questions.Create(questionToAdd);
-            /*categoryId 123*/
             db.Save();
 
+        }
+
+        public void UpdateQuestion(QuestionDTO question)
+        {
+            var questionDAL = _mapper.Map<QuestionDTO, Question>(question);
+            db.Questions.Update(questionDAL);
+            db.Save();
         }
 
         public void DeleteQuestion(int id)
@@ -75,13 +81,6 @@ namespace OnlineTestingSystem.BLL.Services
         {
             var question = db.Questions.Get(id);
             return _mapper.Map<Question, QuestionDTO>(question);
-        }
-
-        public void UpdateQuestion(QuestionDTO question)
-        {
-            var questionDAL = _mapper.Map<QuestionDTO, Question>(question);
-            db.Questions.Update(questionDAL);
-            db.Save();
         }
 
         public void Dispose()

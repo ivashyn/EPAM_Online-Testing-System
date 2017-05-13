@@ -47,6 +47,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
 
+        // GET: Test/Evaluation/2
         [Authorize]
         [Route("Evaluation/{testId}")]
         public ActionResult Evaluation(int testId)
@@ -71,7 +72,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 TestId = testId,
                 TimeStart = DateTime.Now,
                 TimeFinish = DateTime.Now,
-                UserId = user.UserID// 2  // Remake this later
+                UserId = user.UserID
             };
             _testSessionService.CreateSession(testSession);
             var testSessionId = _testSessionService.GetLastSessionByUserIdAndTestId(user.UserID, testId).Id;  //remake THis!!!
@@ -151,18 +152,23 @@ namespace OnlineTestingSystem.WebUI.Controllers
         private void CreateCertificate(int testId, int score)
         {
             var user = _userService.GetUserByEmail(User.Identity.Name);
+            var lastCertificateNumber = _certificateService.GetLastCertificateNumber();
+            var numbers = Convert.ToInt32(lastCertificateNumber.Substring(2));
+            numbers++;
             var certificate = new CertificateDTO
             {
                 Score = score,
-                CertificateNumber = "000013",  //Remake This . . . . . . . . . . . . . . 
+                CertificateNumber = "CN" + numbers,
                 TestDate = DateTime.Now,
                 TestId = testId,
-                UserId = user.UserID// 2  //Remake This . . . . . . . . . . . . . . 
+                UserId = user.UserID
             };
             _certificateService.CreateCertificate(certificate);
         }
 
 
+        // GET: CreateTest
+        [Route("~/CreateTest")]
         [Authorize(Roles = "SuperAdmin, Admin")]
         public ActionResult Create()
         {
@@ -183,6 +189,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(test);
         }
 
+        // GET: Test/Delete/2
         [Authorize(Roles = "SuperAdmin, Admin")]
         [Route("Delete/{testId}")]
         public ActionResult Delete(int testId)
@@ -190,7 +197,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             var test = _testService.GetTestById(testId);
             if (test == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error", "Home", new { @errorText = "The test is not exsist" });
             }
 
             return View(test);
@@ -206,13 +213,14 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
 
+        // GET: Test/Update/2
         [Authorize(Roles = "SuperAdmin, Admin")]
         [Route("Update/{testId}")]
         public ActionResult Update(int testId)
         {
             var test = _testService.GetTestById(testId);
             if (test == null)
-                return HttpNotFound();
+                return RedirectToAction("Error", "Home", new { @errorText = "The test is not exsist" });
             ViewBag.Category = new SelectList(_questionCategoryService.GetAllCategories(), "Id", "CategoryName", test.QuestionCategoryId);
 
             return View(test);
@@ -235,6 +243,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
 
+        // GET: Catalog
         [Route("~/Catalog")]
         public ActionResult AllTests()
         {
@@ -248,12 +257,13 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(viewModelTests);
         }
 
-        [Route("{testId}", Name ="TestInfo")]
+        // GET: Test/5
+        [Route("~/Test/{testId}")]
         public ActionResult Test(int testId)
         {
             var test = _testService.GetTestById(testId);
             if (test == null)
-                return HttpNotFound();
+                return RedirectToAction("Error", "Home", new { @errorText = "The test is not exsist" });
             ViewBag.NumberOfQuestions = _testService.GetTestQuestions(testId).Count();
 
             return View(test);

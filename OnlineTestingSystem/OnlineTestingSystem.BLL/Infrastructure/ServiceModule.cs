@@ -20,6 +20,7 @@ namespace OnlineTestingSystem.BLL.Infrastructure
         {
             Bind<IUnitOfWorkTest>().To<UnitOfWorkTest>().WithConstructorArgument(connectionString);
             Bind<IUnitOfWorkUser>().To<UnitOfWorkUser>().WithConstructorArgument(connectionString);
+            //Bind<IUnitOfWorkApplication>().To<IdentityUnitOfWork>().WithConstructorArgument(connectionString);
         }
     }
 }

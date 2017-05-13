@@ -50,7 +50,7 @@ namespace OnlineTestingSystem.BLL.Services
         {
             var sertificateToDelete = GetCertificateById(id);
             if (sertificateToDelete == null)
-                throw new ValidationException("Sorry, but the sertificate doesn't exsist.", "");
+                throw new ValidationException("Sorry, but the certificate doesn't exsist.", "");
             db.Certificates.Delete(id);
             db.Save();
         }
@@ -69,8 +69,10 @@ namespace OnlineTestingSystem.BLL.Services
 
         public CertificateDTO GetCertificateByNumber(string number)
         {
-            var sertificate = db.Certificates.Find(s => s.CertificateNumber == number).FirstOrDefault();
-            return _mapper.Map<Certificate, CertificateDTO>(sertificate);
+            var certificate = db.Certificates.Find(s => s.CertificateNumber == number).FirstOrDefault();
+            if (certificate == null)
+                throw new ValidationException("Sorry, but the certificate doesn't exsist. ", "");
+            return _mapper.Map<Certificate, CertificateDTO>(certificate);
         }
 
         public IEnumerable<CertificateDTO> GetCertificatesByUserId(int userId)
@@ -79,16 +81,24 @@ namespace OnlineTestingSystem.BLL.Services
             return _mapper.Map<IEnumerable<Certificate>, IEnumerable<CertificateDTO>>(sertificates);
         }
 
-        public void Dispose()
-        {
-            db.Dispose();
-        }
-
         public IEnumerable<CertificateDTO> GetNCertificatesByUserId(int userId, int amountToTake, int amountToSkip)
         {
             var certificates = GetCertificatesByUserId(userId).Skip(amountToSkip).Take(amountToTake);
             return certificates;
 
+        }
+
+        public string GetLastCertificateNumber()
+        {
+            var certificate = db.Certificates.GetAll().LastOrDefault();
+            if (certificate == null)
+                return "CN0";
+            return certificate.CertificateNumber;
+        }
+
+        public void Dispose()
+        {
+            db.Dispose();
         }
     }
 }

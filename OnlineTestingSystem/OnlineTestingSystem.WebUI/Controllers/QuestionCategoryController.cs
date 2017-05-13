@@ -20,11 +20,12 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
         // GET: QuestionCategory
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
+        //GET: QuestionCategory/Create
         public ActionResult Create()
         {
             return View();
@@ -41,13 +42,16 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(catetgoryToCreate);
         }
 
+
+
+        //GET: QuestionCategory/Delete/8
         [Route("Delete/{categoryId}")]
         public ActionResult Delete(int categoryId)
         {
             var category = _questionCategoryService.GetCagetoryById(categoryId);
             if (category == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error", "Home",new { @errorText = "The category is not exsist"});
             }
 
             return View(category);
@@ -63,13 +67,13 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
+        //GET: QuestionCategory/Update/8
         [Route("Update/{categoryId}")]
         public ActionResult Update(int categoryId)
         {
             var category = _questionCategoryService.GetCagetoryById(categoryId);
             if (category == null)
-                return HttpNotFound();
+                return RedirectToAction("Error", "Home", new { @errorText = "The category is not exsist" });
 
             return View(category);
         }

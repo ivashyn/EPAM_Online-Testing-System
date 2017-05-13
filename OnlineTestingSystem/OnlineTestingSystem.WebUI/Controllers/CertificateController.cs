@@ -14,20 +14,27 @@ namespace OnlineTestingSystem.WebUI.Controllers
         {
             _certificateService = certificateService;
         }
+
         // GET: Certificate
         public ActionResult Index()
         {
             return View();
         }
-        
-        public ActionResult Search(int certificateNumber)
+
+        //GET: Certificate/Search/?certificateNumber=CN2
+
+        public ActionResult Search(string certificateNumber)
         {
-            //certificateNumber = "C#0000004";
             var s = _certificateService.GetAllCertificates();
-            var certificate = _certificateService.GetCertificateByNumber(certificateNumber.ToString());
-            if (certificate == null)
-                return RedirectToAction("Index","Home");//modelStateisValid
-            return View();
+            try
+            {
+                var certificate = _certificateService.GetCertificateByNumber(certificateNumber.ToString());
+                return View(certificate);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Home", new { @errorText = ex.Message });
+            }
         }
     }
 }

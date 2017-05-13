@@ -34,6 +34,7 @@ namespace OnlineTestingSystem.WebUI.Util
             kernel.Bind<ITestService>().To<TestService>();
             kernel.Bind<ICertificateService>().To<CertificateService>();
             kernel.Bind<ITestSessionService>().To<TestSessionService>();
+            //kernel.Bind<IUserAppService>().To<UserAppService>();
         }
     }
 }

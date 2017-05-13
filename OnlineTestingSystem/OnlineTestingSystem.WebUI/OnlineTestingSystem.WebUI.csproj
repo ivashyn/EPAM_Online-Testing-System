@@ -229,6 +229,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\ApplicationScripts\Evaluation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -297,11 +298,9 @@
     <Content Include="Views\Account\MyCertificates.cshtml" />
     <Content Include="Views\Account\MyTestsSessions.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
-    <Content Include="Views\Errors\Error404.cshtml" />
-    <Content Include="Views\Home\Error404.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Account\SuccessRegister.cshtml" />
     <Content Include="Views\Account\Cabinet.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
@@ -314,7 +313,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

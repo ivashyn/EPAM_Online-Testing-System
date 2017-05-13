@@ -18,6 +18,8 @@ namespace OnlineTestingSystem.BLL.Interfaces
 
         CertificateDTO GetCertificateByNumber(string number);
 
+        string GetLastCertificateNumber();
+
         void CreateCertificate(CertificateDTO certificate);
 
         void DeleteCertificate(int id);

@@ -43,24 +43,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             _mapper = config.CreateMapper();
         }
 
-        // GET: Login
-        public ActionResult Registration()
-        {
-            return View("Registration");
-        }
-
-        [HttpPost]
-        public ActionResult Registration(UserDTO user)
-        {
-            if (ModelState.IsValid)
-            {
-                user.UserRole = UserRoleDTO.User;
-                _userService.CreateUser(user);
-            }
-            return View(user);
-
-        }
-
+        //GET: Cabinet/Certificates
         [Authorize]
         [Route("~/Cabinet/Certificates")]
         public ActionResult MyCertificates(int page = 1)
@@ -79,6 +62,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
 
+        //GET: Cabinet/Results
         [Route("~/Cabinet/Results")]
         [Authorize]
         public ActionResult MyTestsSessions(int page = 1)
@@ -87,11 +71,6 @@ namespace OnlineTestingSystem.WebUI.Controllers
             var userId = user.UserID;
             var allUserSessions = _testSessionService.GetSessionsByUserId(userId);
             var allViewModelSessions = _mapper.Map<IEnumerable<TestSessionDTO>, IEnumerable<TestSessionViewModel>>(allUserSessions);
-            //foreach (var session in allViewModelSessions)
-            //{
-            //    session.TestTime = session.TimeFinish.Subtract(session.TimeStart);
-            //    //session.TestName = 
-            //}
 
             int totalSessions = allViewModelSessions.Count();
             var sessions = _testSessionService.GetNSessionsByUserId(userId, sessionsPerPage, (page - 1) * sessionsPerPage);
@@ -99,9 +78,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             foreach (var session in viewModelSessions)
             {
                 session.TestTime = session.TimeFinish.Subtract(session.TimeStart);
-                //session.TestName = 
             }
-
 
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = sessionsPerPage, TotalItems = totalSessions };
             var icvm = new IndexSessionViewModel { PageInfo = pageInfo, Sessions = viewModelSessions };
@@ -109,7 +86,9 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(icvm);
         }
 
+        //GET: Cabinet
         [Authorize]
+        [Route("~/Cabinet")]
         public ActionResult Cabinet()
         {
             var user = _userService.GetUserByEmail(User.Identity.Name);
@@ -133,6 +112,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             }
         }
 
+        //GET: Account/Login
         public ActionResult Login()
         {
             return View();
@@ -164,20 +144,22 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(model);
         }
 
+        //GET: Account/Logout
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Register()
+        //GET: Account/Registration
+        public ActionResult Registration()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterModel model)
+        public async Task<ActionResult> Registration(RegisterModel model)
         {
             await SetInitialDataAsync();
             if (ModelState.IsValid)
@@ -208,6 +190,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             }
             return View(model);
         }
+
         private async Task SetInitialDataAsync()
         {
             await UserAppService.SetInitialData(new UserDTO

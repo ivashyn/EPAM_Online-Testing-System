@@ -22,6 +22,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         public UsersController(IUserService userService)
         {
             _userService = userService;
+            //_userAppService = userAppService;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -36,6 +37,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             _mapper = config.CreateMapper();
         }
 
+        // GET: Users/?page=3
         public ActionResult Index(int page = 1)
         {
             int totalUsers = _userService.GetAllUsers().Count();
@@ -47,13 +49,14 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
 
+        // GET: Users/Delete/5
         [Route("Delete/{userId}")]
         public ActionResult Delete(int userId)
         {
             var user = _userService.GetUserById(userId);
             if (user == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error", "Home", new { @errorText = "The user is not exsist" });
             }
 
             return View(user);
@@ -64,17 +67,25 @@ namespace OnlineTestingSystem.WebUI.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int userId)
         {
-            _userService.DeleteUser(userId);
+            try
+            {
+                _userService.DeleteUser(userId);
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home", new { @errorText = "The user is not exsist" });
+            }
             return RedirectToAction("Index", "Home");
         }
 
 
+        // GET: Users/Update/5
         [Route("Update/{userId}")]
         public ActionResult Update(int userId)
         {
             var user = _userService.GetUserById(userId);
             if (user == null)
-                return HttpNotFound();
+                return RedirectToAction("Error", "Home", new { @errorText = "The user is not exsist" });
             var roles = new List<string>();
             foreach (UserRoleDTO role in Enum.GetValues(typeof(UserRoleDTO)))
             {
@@ -95,7 +106,9 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 var userPassword = _userService.GetUserById(user.UserID).Password;
                 user.Password = userPassword;
                 var userDTO = _mapper.Map<UserViewModel, UserDTO>(user);
+                var userEmail = User.Identity.Name;
                 _userService.UpdateUser(userDTO);
+                //_userAppService.ChangeUserRole(userEmail, user.Role);
                 return RedirectToAction("Index", "Home");
             }
 

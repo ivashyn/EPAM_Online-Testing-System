@@ -61,8 +61,9 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View();
         }
 
-        public ActionResult Error404()
+        public ActionResult Error(string errorText = "You Requested the page that is no longer There.")
         {
+            ViewBag.ErrorText = errorText;
             return View();
         }
     }

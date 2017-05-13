@@ -6,9 +6,24 @@
 
 <h2>Search</h2>
 
-<h3>@Model.CertificateNumber</h3>
 
-<p>@Model.UserDTO.LastName</p>
-<p>@Model.UserDTO.FirstName</p>
-<p>@Model.TestDTO.Name</p>
-<p>@Model.Score</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>CertificateNumber</th>
+            <th>User</th>
+            <th>Test</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>@Model.CertificateNumber</td>
+            <td>@Model.UserDTO.LastName @Model.UserDTO.FirstName</td>
+            <td>@Model.TestDTO.Name</td>
+            <td>@Model.Score</td>
+        </tr>
+
+    </tbody>
+</table>

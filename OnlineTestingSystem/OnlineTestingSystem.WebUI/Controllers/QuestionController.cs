@@ -26,7 +26,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             _questionCategoryService = questionCategoryService;
         }
 
-        // GET: Question
+        // GET: Question/?page=3
         [Authorize(Roles = ("SuperAdmin, Admin"))]
         public ActionResult Index(int page = 1)
         {
@@ -38,6 +38,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(iqvm);
         }
 
+        // GET: Question/Create
         public ActionResult Create()
         {
             ViewBag.Category = new SelectList(_questionCategoryService.GetAllCategories(), "Id", "CategoryName");
@@ -50,26 +51,28 @@ namespace OnlineTestingSystem.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _questionService.CreateQuestion(questionToCreate);
-                var questionId = _questionService.GetQuestionByText(questionToCreate.QuestionText).Id;
-                foreach (var answer in questionToCreate.QuestionAnswersDTO)
+                try
                 {
-                    answer.QuestionId = questionId;
-                    _questionAnswerService.CreateAnswer(answer);
-                    return RedirectToAction("Index", "Question");
+                    _questionService.CreateQuestion(questionToCreate);
                 }
+                catch(Exception ex)
+                {
+                    return RedirectToAction("Error", "Home", new { @errorText = ex.Message });
+                }
+                return RedirectToAction("Index", "Question");
             }
             ViewBag.Category = new SelectList(_questionCategoryService.GetAllCategories(), "Id", "CategoryName", questionToCreate.QuestionCategoryId);
             return View(questionToCreate);
         }
 
 
+        // GET: Question/Update/2
         [Route("Update/{questionId}")]
         public ActionResult Update(int questionId)
         {
             var question = _questionService.GetQuestionById(questionId);
             if (question == null)
-                return HttpNotFound();
+                return RedirectToAction("Error","Home", new { @errorText = "The question is not exsist" });
             ViewBag.Category = new SelectList(_questionCategoryService.GetAllCategories(), "Id", "CategoryName", question.QuestionCategoryId);
 
             return View(question);
@@ -89,16 +92,17 @@ namespace OnlineTestingSystem.WebUI.Controllers
             return View(question);
         }
 
+        // GET: Question/Delete/2
         [Route("Delete/{questionId}")]
         public ActionResult Delete(int questionId)
         {
             var question = _questionService.GetQuestionById(questionId);
             if (question == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error", "Home", new { @errorText = "The question is not exsist" });
             }
 
-            return View("Index");
+            return View(question);
         }
 
 

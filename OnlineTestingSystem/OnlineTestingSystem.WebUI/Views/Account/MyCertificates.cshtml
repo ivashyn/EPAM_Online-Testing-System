@@ -22,15 +22,15 @@
         {
             <tr>
                 <td>@certificate.TestDTO.Name</td>
-                <td>@certificate.Score / maxScore</td>
+                <td>@certificate.Score</td>
                 <td>@certificate.TestDate.ToString("dd/MM/yyyy")</td>
                 <td>@certificate.CertificateNumber</td>
             </tr>
-        }
+                    }
     </tbody>
 </table>
 
 <br />
 <div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("Certificates","Cabinet", new { page = x }))
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Certificates", "Cabinet", new { page = x }))
 </div>

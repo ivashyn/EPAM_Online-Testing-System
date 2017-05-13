@@ -72,9 +72,25 @@ namespace OnlineTestingSystem.BLL.Services
             await Create(adminDto);
         }
 
+        //public void ChangeUserRole(string userEmail, string role)
+        //{
+        //    var oldUser = Database.UserManager.FindByEmail(userEmail);
+        //    var oldRoleId = oldUser.Roles.SingleOrDefault().RoleId;
+        //    var oldRoleName =Database.RoleManager.Roles.SingleOrDefault(r => r.Id == oldRoleId).Name;
+
+        //    if (oldRoleName != role)
+        //    {
+        //        Database.UserManager.RemoveFromRole(oldUser.Id, oldRoleName);
+        //        Database.UserManager.AddToRole(oldUser.Id, role);
+        //    }
+        //    Database.SaveAsync();
+        //}
+
         public void Dispose()
         {
             Database.Dispose();
         }
+
+       
     }
 }
