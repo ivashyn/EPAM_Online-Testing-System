@@ -2,6 +2,7 @@
 using OnlineTestingSystem.BLL.Interfaces;
 using OnlineTestingSystem.BLL.ModelsDTO;
 using OnlineTestingSystem.WebUI.Models;
+using OnlineTestingSystem.WebUI.Models.PaginationModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         IQuestionService _questionService;
         IQuestionCategoryService _questionCategoryService;
         IMapper _mapper;
+        private int testsPerPage = 10;
 
         public TestController(ITestService testService, IQuestionAnswerService questionAnswerService, IQuestionCategoryService questionCategoryService,
                             IQuestionService questionService, ITestSessionService testSessionService, ICertificateService certificateService, IUserService userService)
@@ -78,6 +80,18 @@ namespace OnlineTestingSystem.WebUI.Controllers
             var testSessionId = _testSessionService.GetLastSessionByUserIdAndTestId(user.UserID, testId).Id;  //remake THis!!!
             evaluationViewModel.TestSessionId = testSessionId;
             return View(evaluationViewModel);
+        }
+
+
+        [Route("~/Tests")]
+        public ActionResult Index(int page = 1)
+        {
+            int totalTests = _testService.GetAllTests().Count();
+            var tests = _testService.GetNTests(testsPerPage, (page - 1) * testsPerPage);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = testsPerPage, TotalItems = totalTests };
+            var iuvm = new IndexTestViewModel { PageInfo = pageInfo, Tests = tests };
+
+            return View(iuvm);
         }
 
 

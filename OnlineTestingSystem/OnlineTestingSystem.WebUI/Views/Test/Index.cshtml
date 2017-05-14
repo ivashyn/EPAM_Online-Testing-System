@@ -1,0 +1,40 @@
+﻿@model OnlineTestingSystem.WebUI.Models.PaginationModels.IndexTestViewModel
+@using OnlineTestingSystem.WebUI.Helpers
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>ScoreToPass</th>
+            <th>Timelimit</th>
+            <th>Category</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var test in Model.Tests)
+        {
+            <tr>
+                <td>@test.Name</td>
+                <td>@test.ScoreToPass</td>
+                <td>@test.Timelimit</td>
+                <td>@test.QuestionCagegoryDTO.CategoryName</td>
+                <td>
+                    @Html.ActionLink("Update |", "Update/" + test.Id, "Test")
+                    @Html.ActionLink("Delete", "Delete/" + test.Id, "Test")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>

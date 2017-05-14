@@ -23,6 +23,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
 
         //GET: Certificate/Search/?certificateNumber=CN2
 
+        [HttpGet]
         public ActionResult Search(string certificateNumber)
         {
             var s = _certificateService.GetAllCertificates();

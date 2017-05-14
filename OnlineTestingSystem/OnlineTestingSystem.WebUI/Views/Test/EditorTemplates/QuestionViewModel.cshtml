@@ -5,8 +5,9 @@
     <br />
     @for (int i = 0; i < Model.Answers.Count; i++)
     {
+        @Html.HiddenFor(model => Model.Id)
         <p>
-            @Html.RadioButtonFor(b => b.SelectedAnswer, Model.Answers.ToList()[i].Id, new { @id="radioB"})  @Model.Answers.ToList()[i].Answer
+            @Html.RadioButtonFor(b => b.SelectedAnswer, Model.Answers.ToList()[i].Id, new { @id = "radioB" })  @Model.Answers.ToList()[i].Answer
         </p>
     }
     <button type="button" id="buttonGetNextQuestion" onclick=ShowNextQuestion(this)>Next</button>

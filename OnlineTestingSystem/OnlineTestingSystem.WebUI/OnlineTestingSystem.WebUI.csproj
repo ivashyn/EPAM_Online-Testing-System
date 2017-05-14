@@ -206,6 +206,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Models\PaginationModels\IndexSessionViewModel.cs" />
+    <Compile Include="Models\PaginationModels\IndexTestViewModel.cs" />
     <Compile Include="Models\PaginationModels\IndexUserViewModel.cs" />
     <Compile Include="Models\QuestionViewModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
@@ -304,6 +305,7 @@
     <Content Include="Views\Account\SuccessRegister.cshtml" />
     <Content Include="Views\Account\Cabinet.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

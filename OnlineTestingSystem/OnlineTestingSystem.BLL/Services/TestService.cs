@@ -114,5 +114,11 @@ namespace OnlineTestingSystem.BLL.Services
         {
             db.Dispose();
         }
+
+        public IEnumerable<TestDTO> GetNTests(int amountToTake, int amountToSkip)
+        {
+            var tests = db.Tests.GetAll().Skip(amountToSkip).Take(amountToTake);
+            return _mapper.Map<IEnumerable<Test>, IEnumerable<TestDTO>>(tests);
+        }
     }
 }

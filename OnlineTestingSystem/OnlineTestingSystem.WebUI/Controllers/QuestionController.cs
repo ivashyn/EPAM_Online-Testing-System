@@ -55,7 +55,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
                 {
                     _questionService.CreateQuestion(questionToCreate);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return RedirectToAction("Error", "Home", new { @errorText = ex.Message });
                 }
@@ -72,7 +72,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         {
             var question = _questionService.GetQuestionById(questionId);
             if (question == null)
-                return RedirectToAction("Error","Home", new { @errorText = "The question is not exsist" });
+                return RedirectToAction("Error", "Home", new { @errorText = "The question is not exsist" });
             ViewBag.Category = new SelectList(_questionCategoryService.GetAllCategories(), "Id", "CategoryName", question.QuestionCategoryId);
 
             return View(question);
@@ -85,6 +85,11 @@ namespace OnlineTestingSystem.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                //var questionId = question.Id;
+                //foreach (var answer in question.QuestionAnswersDTO)
+                //{
+                //    answer.QuestionId = questionId;
+                //}
                 _questionService.UpdateQuestion(question);
                 return RedirectToAction("Index", "Home");
             }

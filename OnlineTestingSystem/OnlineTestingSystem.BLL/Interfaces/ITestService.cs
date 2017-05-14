@@ -10,6 +10,7 @@ namespace OnlineTestingSystem.BLL.Interfaces
     public interface ITestService : IDisposable
     {
         IEnumerable<TestDTO> GetAllTests();
+        IEnumerable<TestDTO> GetNTests(int amountToTake, int amountToSkip);
         TestDTO GetTestById(int id);
         void CreateTest(TestDTO test);
         void UpdateTest(TestDTO test);
