@@ -30,20 +30,34 @@
                         <li>@Html.ActionLink("Questions", "Index", "Question")</li>
                     }
                 </ul>
-                <ul class="nav navbar-nav pull-right">
-                    @if (!User.Identity.IsAuthenticated)
-                    {
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav pull-right">
                         <li>@Html.ActionLink("Login", "Login", "Account")</li>
                         <li>@Html.ActionLink("Registration", "Registration", "Account")</li>
-                    }
-                    else
-                    {
-                        <li>
-                            @Html.ActionLink(@User.Identity.Name, "Cabinet", "Account")
+                    </ul>
+                }
+                else
+                {
+                    <ul class="navbar-header pull-right" style="margin-top:15px;">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                @User.Identity.Name <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Certificates", "MyCertificates", "Account")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Sessions", "MyTestsSessions", "Account")
+                                </li>
+                                <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                            </ul>
                         </li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-                    }
-                </ul>
+                    </ul>
+
+                }
 
                 <div class="form-group">
                     @using (Html.BeginForm("Search", "Certificate", new { id = "certificateNumber" }, FormMethod.Get, new { @class = "navbar-form navbar-left pull-right", @id = "searchCertificateForm" }))

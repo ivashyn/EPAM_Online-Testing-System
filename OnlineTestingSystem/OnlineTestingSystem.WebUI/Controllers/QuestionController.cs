@@ -85,11 +85,6 @@ namespace OnlineTestingSystem.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var questionId = question.Id;
-                //foreach (var answer in question.QuestionAnswersDTO)
-                //{
-                //    answer.QuestionId = questionId;
-                //}
                 _questionService.UpdateQuestion(question);
                 return RedirectToAction("Index", "Home");
             }
@@ -113,7 +108,6 @@ namespace OnlineTestingSystem.WebUI.Controllers
 
         [Route("Delete/{questionId}")]
         [HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int questionId)
         {
             _questionService.DeleteQuestion(questionId);

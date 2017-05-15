@@ -9,5 +9,11 @@
     @Model.FirstName @Model.LastName
 </div>
 
-@Html.ActionLink("Certificates","MyCertificates","Account")
-@Html.ActionLink("Sessions", "MyTestsSessions", "Account")
+<div class="row">
+    <div class="col-md-6" >
+        @Html.ActionLink("Certificates", "MyCertificates", "Account")
+    </div>
+    <div class="col-md-6">
+        @Html.ActionLink("Sessions", "MyTestsSessions", "Account")
+    </div>
+</div>

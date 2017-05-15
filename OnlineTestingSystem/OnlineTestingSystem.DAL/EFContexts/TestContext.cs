@@ -18,7 +18,6 @@ namespace OnlineTestingSystem.DAL.EntityFramework
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
         public DbSet<QuestionCategory> QuestionCategories { get; set; }
-        //public DbSet<Speciality> Specialities { get; set; }
 
         public TestContext() : base("TestDB")
         {

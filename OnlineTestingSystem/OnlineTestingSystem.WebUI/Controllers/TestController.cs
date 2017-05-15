@@ -40,7 +40,6 @@ namespace OnlineTestingSystem.WebUI.Controllers
             {
                 cfg.CreateMap<QuestionDTO, QuestionViewModel>()
                 .ForMember(bgv => bgv.Answers, opt => opt.MapFrom(b => b.QuestionAnswersDTO));
-                //.ForMember(b => b.SelectedAnswer, opt => opt.Ignore());
                 cfg.CreateMap<QuestionAnswerDTO, AnswerViewModel>()
                 .ForMember(b => b.QuestionViewModel, opt => opt.MapFrom(b => b.QuestionDTO));
                 cfg.CreateMap<TestDTO, TestViewModel>();
@@ -191,6 +190,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
         }
 
         [HttpPost]
+        [Route("~/CreateTest")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TestDTO test)
         {

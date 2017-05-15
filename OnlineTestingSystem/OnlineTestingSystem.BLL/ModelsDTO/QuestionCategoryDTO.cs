@@ -16,7 +16,7 @@ namespace OnlineTestingSystem.BLL.ModelsDTO
         public string CategoryName { get; set; }
 
         public virtual ICollection<QuestionDTO> QuestionsDTO { get; set; }
-        public virtual ICollection<TestDTO> TestsDTO { get; set; }  //maybe 1:1?
+        public virtual ICollection<TestDTO> TestsDTO { get; set; }
 
         public QuestionCategoryDTO()
         {

@@ -17,7 +17,7 @@ namespace OnlineTestingSystem.DAL.Entities
 
 
         public virtual ICollection<Question> Questions { get; set; }
-        public virtual ICollection<Test> Tests { get; set; }  //maybe 1:1?
+        public virtual ICollection<Test> Tests { get; set; }
 
         public QuestionCategory()
         {
