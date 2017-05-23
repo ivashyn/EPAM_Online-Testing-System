@@ -24,7 +24,8 @@
                 <td>@user.UserRole</td>
                 <td>
                     @Html.ActionLink("Update |","Update/"+user.UserID,"Users")
-                    @Html.ActionLink("Delete", "Delete/" + user.UserID, "Users")
+                    <a href="" onclick="Delete(@user.UserID)">Delete</a>
+                    @*@Html.ActionLink("Delete", "Delete/" + user.UserID, "Users")*@
                 </td>
             </tr>
         }
@@ -36,3 +37,25 @@
 <div class="btn-group">
     @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
 </div>
+
+
+<script>
+    function Delete(id) {
+        var answer = confirm("Do you realy want to delete this user?");
+        if (answer) {
+            $.ajax({
+            type: "POST",
+            url: "@Url.Action("Delete/","Users")"+ id,
+            ajaxasync: true,
+            success: function (data) {
+                alert("success");
+                $("#" + id).closest("tr").remove();
+                window.location.replace("@Url.Action("Index", "Users")");
+            },
+            error: function () {
+            }
+            });
+
+        };
+    }
+</script>

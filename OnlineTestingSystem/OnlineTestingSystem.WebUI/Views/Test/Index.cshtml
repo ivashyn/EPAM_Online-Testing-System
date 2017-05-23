@@ -26,7 +26,8 @@
                 <td>@test.QuestionCagegoryDTO.CategoryName</td>
                 <td>
                     @Html.ActionLink("Update |", "Update/" + test.Id, "Test")
-                    @Html.ActionLink("Delete", "Delete/" + test.Id, "Test")
+                    <a href="" onclick="Delete(@test.Id)">Delete</a>
+                    @*@Html.ActionLink("Delete", "Delete/" + test.Id, "Test")*@
                 </td>
             </tr>
         }
@@ -40,3 +41,24 @@
 <div class="btn-group">
     @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
 </div>
+
+<script>
+    function Delete(id) {
+        var answer = confirm("Do you realy want to delete this test?");
+        if (answer) {
+            $.ajax({
+            type: "POST",
+            url: "@Url.Action("Delete/","Test")"+ id,
+            ajaxasync: true,
+            success: function (data) {
+                alert("success");
+                $("#" + id).closest("tr").remove();
+                window.location.replace("@Url.Action("Index", "Test")");
+            },
+            error: function () {
+            }
+            });
+
+        };
+    }
+</script>

@@ -63,7 +63,7 @@ namespace OnlineTestingSystem.WebUI.Controllers
 
             var test = _testService.GetTestById(testId);
             var user = _userService.GetUserByEmail(User.Identity.Name);
-            ViewBag.TimeLimit = test.Timelimit;
+            ViewBag.TimeLimit = Session[""];
             ViewBag.TestName = test.Name;
 
             var testSession = new TestSessionDTO
@@ -222,7 +222,14 @@ namespace OnlineTestingSystem.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int testId)
         {
-            _testService.DeleteTest(testId);
+            try
+            {
+                _testService.DeleteTest(testId);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Home", new { @errorText = ex.Message });
+            }
             return RedirectToAction("Index", "Home");
         }
 
